@@ -1,439 +1,296 @@
-// ============================================================
-// GANESH CHATURTHI 2026
-// FINAL AUTOMATIC STORYBOARD
-// ============================================================
+/* =========================================================
+   GANESH CHATURTHI 2026
+   AUTOMATIC CINEMATIC EXPERIENCE
+========================================================= */
+
+const $ = (id) => document.getElementById(id);
 
 
-const divineLight =
-    document.getElementById("divineLight");
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
-const lightExpand =
-    document.getElementById("lightExpand");
+const divineLight   = $("divineLight");
+const lightExpand   = $("lightExpand");
+const particles     = $("particles");
 
-const particleImage =
-    document.getElementById("particleImage");
+const lotusCenter   = $("lotusCenter");
+const lotusOpening  = $("lotusOpening");
+const lotusFull     = $("lotusFull");
 
-const goldenParticles =
-    document.getElementById("goldenParticles");
+const goldenSeat    = $("goldenSeat");
 
-const divineGlow =
-    document.getElementById("divineGlow");
+const ganeshaBase   = $("ganeshaBase");
 
-const lotusCenter =
-    document.getElementById("lotusCenter");
+const crown         = document.querySelector(".reveal.crown");
+const eyes          = document.querySelector(".reveal.eyes");
+const ears          = document.querySelector(".reveal.ears");
+const trunk         = document.querySelector(".reveal.trunk");
+const face          = document.querySelector(".reveal.face");
+const leftHand      = document.querySelector(".reveal.left-hand");
+const rightHand     = document.querySelector(".reveal.right-hand");
+const ornaments     = document.querySelector(".reveal.ornaments");
 
-const lotusOpening =
-    document.getElementById("lotusOpening");
+const leftDiya      = $("leftDiya");
+const rightDiya     = $("rightDiya");
 
-const lotusFull =
-    document.getElementById("lotusFull");
-
-const goldenSeat =
-    document.getElementById("goldenSeat");
-
-const ganeshaCrown =
-    document.getElementById("ganeshaCrown");
-
-const ganeshaEyes =
-    document.getElementById("ganeshaEyes");
-
-const ganeshaEars =
-    document.getElementById("ganeshaEars");
-
-const ganeshaTrunk =
-    document.getElementById("ganeshaTrunk");
-
-const ganeshaFace =
-    document.getElementById("ganeshaFace");
-
-const ganeshaLeftHand =
-    document.getElementById("ganeshaLeftHand");
-
-const ganeshaRightHand =
-    document.getElementById("ganeshaRightHand");
-
-const ganeshaOrnaments =
-    document.getElementById("ganeshaOrnaments");
-
-const ganeshaComplete =
-    document.getElementById("ganeshaComplete");
-
-const leftDiya =
-    document.getElementById("leftDiya");
-
-const rightDiya =
-    document.getElementById("rightDiya");
-
-const stageText =
-    document.getElementById("stageText");
-
-const finalWish =
-    document.getElementById("finalWish");
-
-const finalBlessing =
-    document.getElementById("finalBlessing");
+const wish          = $("wish");
+const blessing      = $("blessing");
 
 
-// ============================================================
-// HELPERS
-// ============================================================
+/* =========================================================
+   BASIC HELPERS
+========================================================= */
 
-function clamp(
-    value,
-    min = 0,
-    max = 1
-) {
+function clamp(value) {
+    return Math.max(0, Math.min(1, value));
+}
 
-    return Math.min(
-        Math.max(
-            value,
-            min
-        ),
-        max
+
+function smooth(value) {
+
+    value = clamp(value);
+
+    return value * value * (3 - 2 * value);
+}
+
+
+function between(time, start, end) {
+
+    return smooth(
+        (time - start) / (end - start)
     );
 }
 
 
-function ease(
-    value
-) {
+function setOpacity(element, value) {
 
-    value =
-        clamp(value);
+    if (!element) return;
 
-    return (
-        value *
-        value *
-        (3 - 2 * value)
-    );
+    element.style.opacity = clamp(value);
 }
 
 
-function progress(
-    time,
-    start,
-    end
-) {
+function setScale(element, value) {
 
-    return ease(
-        (time - start) /
-        (end - start)
-    );
-}
-
-
-function opacity(
-    element,
-    value
-) {
-
-    if (!element)
-        return;
-
-    element.style.opacity =
-        String(
-            clamp(value)
-        );
-}
-
-
-function scale(
-    element,
-    value
-) {
-
-    if (!element)
-        return;
+    if (!element) return;
 
     element.style.transform =
-        `
-        translate(-50%, -50%)
-        scale(${value})
-        `;
+        `translate(-50%, -50%) scale(${value})`;
 }
 
 
-function text(
-    value
-) {
+/* =========================================================
+   INITIAL STATE
+========================================================= */
 
-    stageText.textContent =
-        value;
+function resetAll() {
 
-    stageText.style.opacity =
-        value ? "1" : "0";
+    setOpacity(divineLight, 0);
+    setOpacity(lightExpand, 0);
+    setOpacity(particles, 0);
+
+    setOpacity(lotusCenter, 0);
+    setOpacity(lotusOpening, 0);
+    setOpacity(lotusFull, 0);
+
+    setOpacity(goldenSeat, 0);
+
+    setOpacity(ganeshaBase, 0);
+
+    setOpacity(crown, 0);
+    setOpacity(eyes, 0);
+    setOpacity(ears, 0);
+    setOpacity(trunk, 0);
+    setOpacity(face, 0);
+
+    setOpacity(leftHand, 0);
+    setOpacity(rightHand, 0);
+
+    setOpacity(ornaments, 0);
+
+    setOpacity(leftDiya, 0);
+    setOpacity(rightDiya, 0);
+
+    setOpacity(wish, 0);
+    setOpacity(blessing, 0);
 }
 
 
-// ============================================================
-// HIDE GANESHA PARTS
-// ============================================================
+/* =========================================================
+   DIVINE LIGHT
+   2–6 SECONDS
+========================================================= */
 
-function hideGanesha() {
+function animateLight(time) {
 
-    [
-        ganeshaCrown,
-        ganeshaEyes,
-        ganeshaEars,
-        ganeshaTrunk,
-        ganeshaFace,
-        ganeshaLeftHand,
-        ganeshaRightHand,
-        ganeshaOrnaments,
-        ganeshaComplete
+    if (time < 2) {
 
-    ].forEach(
-        element => {
+        setOpacity(divineLight, 0);
+        setOpacity(lightExpand, 0);
+        setOpacity(particles, 0);
 
-            opacity(
-                element,
-                0
-            );
+        return;
+    }
 
-        }
-    );
+
+    /* 2–4 : single divine light */
+
+    if (time < 4) {
+
+        const p = between(time, 2, 4);
+
+        setOpacity(divineLight, p);
+
+        setScale(
+            divineLight,
+            0.25 + p * 1.15
+        );
+
+        return;
+    }
+
+
+    /* 4–6 : expanding light + particles */
+
+    if (time < 6) {
+
+        const p = between(time, 4, 6);
+
+        setOpacity(divineLight, 0.85);
+
+        setOpacity(
+            lightExpand,
+            p
+        );
+
+        setOpacity(
+            particles,
+            p * 0.9
+        );
+
+        setScale(
+            lightExpand,
+            0.75 + p * 0.35
+        );
+
+        return;
+    }
+
+
+    /* After 6 */
+
+    setOpacity(divineLight, 0.28);
+    setOpacity(lightExpand, 0.20);
+    setOpacity(particles, 0.45);
 }
 
 
-// ============================================================
-// LOTUS
-// ============================================================
+/* =========================================================
+   LOTUS
+   6–12 SECONDS
+========================================================= */
 
-function animateLotus(
-    time
-) {
+function animateLotus(time) {
 
-    opacity(
-        lotusCenter,
-        0
-    );
+    /* 6–8 : center */
 
-    opacity(
-        lotusOpening,
-        0
-    );
-
-    opacity(
-        lotusFull,
-        0
-    );
-
-
-    // 6–8
     if (
         time >= 6 &&
         time < 8
     ) {
 
         const p =
-            progress(
-                time,
-                6,
-                8
-            );
+            between(time, 6, 8);
 
-        opacity(
+        setOpacity(
             lotusCenter,
             p
         );
 
-        scale(
+        setScale(
             lotusCenter,
-            0.65 +
-            p * 0.35
+            0.65 + p * 0.35
         );
 
         return;
     }
 
 
-    // 8–10
+    /* 8–10 : opening petals */
+
     if (
         time >= 8 &&
         time < 10
     ) {
 
-        const p =
-            progress(
-                time,
-                8,
-                10
-            );
+        setOpacity(
+            lotusCenter,
+            0
+        );
 
-        opacity(
+        const p =
+            between(time, 8, 10);
+
+        setOpacity(
             lotusOpening,
             p
         );
 
-        scale(
+        setScale(
             lotusOpening,
-            0.78 +
-            p * 0.22
+            0.78 + p * 0.22
         );
 
         return;
     }
 
 
-    // 10+
+    /* 10–12 : full lotus */
+
     if (
-        time >= 10
+        time >= 10 &&
+        time < 12
     ) {
 
-        opacity(
-            lotusFull,
-            1
+        setOpacity(
+            lotusOpening,
+            0
         );
 
-        scale(
+        const p =
+            between(time, 10, 12);
+
+        setOpacity(
             lotusFull,
-            1
+            p
         );
+
+        setScale(
+            lotusFull,
+            0.92 + p * 0.08
+        );
+
+        return;
+    }
+
+
+    /* After 12 */
+
+    if (time >= 12) {
+
+        setOpacity(lotusFull, 1);
+        setScale(lotusFull, 1);
     }
 }
 
 
-// ============================================================
-// LIGHT
-// ============================================================
+/* =========================================================
+   GOLDEN SEAT
+   12–14 SECONDS
+========================================================= */
 
-function animateLight(
-    time
-) {
-
-    opacity(
-        divineLight,
-        0
-    );
-
-    opacity(
-        lightExpand,
-        0
-    );
-
-    opacity(
-        particleImage,
-        0
-    );
-
-    opacity(
-        goldenParticles,
-        0
-    );
-
-
-    // 2–4
-    if (
-        time >= 2 &&
-        time < 4
-    ) {
-
-        const p =
-            progress(
-                time,
-                2,
-                4
-            );
-
-        opacity(
-            divineLight,
-            p
-        );
-
-        scale(
-            divineLight,
-            0.3 +
-            p * 1.4
-        );
-
-        return;
-    }
-
-
-    // 4–6
-    if (
-        time >= 4 &&
-        time < 6
-    ) {
-
-        const p =
-            progress(
-                time,
-                4,
-                6
-            );
-
-        opacity(
-            divineLight,
-            0.9
-        );
-
-        opacity(
-            lightExpand,
-            p
-        );
-
-        opacity(
-            particleImage,
-            p
-        );
-
-        opacity(
-            goldenParticles,
-            p
-        );
-
-        scale(
-            lightExpand,
-            0.7 +
-            p * 0.5
-        );
-
-        return;
-    }
-
-
-    // 6+
-    if (
-        time >= 6
-    ) {
-
-        opacity(
-            divineLight,
-            0.4
-        );
-
-        opacity(
-            lightExpand,
-            0.35
-        );
-
-        opacity(
-            particleImage,
-            0.65
-        );
-
-        opacity(
-            goldenParticles,
-            0.55
-        );
-    }
-}
-
-
-// ============================================================
-// GOLDEN SEAT
-// ============================================================
-
-function animateSeat(
-    time
-) {
-
-    opacity(
-        goldenSeat,
-        0
-    );
-
+function animateSeat(time) {
 
     if (
         time >= 12 &&
@@ -441,491 +298,281 @@ function animateSeat(
     ) {
 
         const p =
-            progress(
-                time,
-                12,
-                14
-            );
+            between(time, 12, 14);
 
-        opacity(
+        setOpacity(
             goldenSeat,
             p
         );
 
-        goldenSeat.style.transform =
-            `
-            translate(-50%, -50%)
-            scaleY(${0.05 + p * 0.95})
-            `;
+        setScale(
+            goldenSeat,
+            0.65 + p * 0.35
+        );
 
         return;
     }
 
 
-    if (
-        time >= 14
-    ) {
+    if (time >= 14) {
 
-        opacity(
+        setOpacity(
             goldenSeat,
             1
         );
 
-        goldenSeat.style.transform =
-            `
-            translate(-50%, -50%)
-            scaleY(1)
-            `;
+        setScale(
+            goldenSeat,
+            1
+        );
     }
 }
 
 
-// ============================================================
-// GANESHA
-// ============================================================
+/* =========================================================
+   GANESHA BUILD
+   14–28 SECONDS
+========================================================= */
 
-function animateGanesha(
-    time
-) {
+function animateGanesha(time) {
 
-    hideGanesha();
+    /* -----------------------------------------
+       14–16 CROWN
+    ----------------------------------------- */
 
-
-    // 14–16 CROWN
     if (
         time >= 14 &&
         time < 16
     ) {
 
         const p =
-            progress(
-                time,
-                14,
-                16
-            );
+            between(time, 14, 16);
 
-        opacity(
-            ganeshaCrown,
+        setOpacity(
+            crown,
             p
-        );
-
-        text(
-            "Golden Crown"
         );
 
         return;
     }
 
 
-    // 16–18 EYES
+    /* -----------------------------------------
+       16–18 EYES
+    ----------------------------------------- */
+
     if (
         time >= 16 &&
         time < 18
     ) {
 
-        opacity(
-            ganeshaCrown,
-            1
-        );
+        setOpacity(crown, 1);
 
-        opacity(
-            ganeshaEyes,
-            progress(
-                time,
-                16,
-                18
-            )
-        );
-
-        text(
-            "Divine Eyes"
+        setOpacity(
+            eyes,
+            between(time, 16, 18)
         );
 
         return;
     }
 
 
-    // 18–20 EARS
+    /* -----------------------------------------
+       18–20 EARS
+    ----------------------------------------- */
+
     if (
         time >= 18 &&
         time < 20
     ) {
 
-        opacity(
-            ganeshaCrown,
-            1
-        );
+        setOpacity(crown, 1);
+        setOpacity(eyes, 1);
 
-        opacity(
-            ganeshaEyes,
-            1
-        );
-
-        opacity(
-            ganeshaEars,
-            progress(
-                time,
-                18,
-                20
-            )
-        );
-
-        text(
-            "Sacred Ears"
+        setOpacity(
+            ears,
+            between(time, 18, 20)
         );
 
         return;
     }
 
 
-    // 20–22 TRUNK
+    /* -----------------------------------------
+       20–22 TRUNK
+    ----------------------------------------- */
+
     if (
         time >= 20 &&
         time < 22
     ) {
 
-        opacity(
-            ganeshaCrown,
-            1
-        );
+        setOpacity(crown, 1);
+        setOpacity(eyes, 1);
+        setOpacity(ears, 1);
 
-        opacity(
-            ganeshaEyes,
-            1
-        );
-
-        opacity(
-            ganeshaEars,
-            1
-        );
-
-        opacity(
-            ganeshaTrunk,
-            progress(
-                time,
-                20,
-                22
-            )
-        );
-
-        text(
-            "Sacred Trunk"
+        setOpacity(
+            trunk,
+            between(time, 20, 22)
         );
 
         return;
     }
 
 
-    // 22–24 FACE
+    /* -----------------------------------------
+       22–24 FACE
+    ----------------------------------------- */
+
     if (
         time >= 22 &&
         time < 24
     ) {
 
-        opacity(
-            ganeshaCrown,
-            1
-        );
+        setOpacity(crown, 1);
+        setOpacity(eyes, 1);
+        setOpacity(ears, 1);
+        setOpacity(trunk, 1);
 
-        opacity(
-            ganeshaEyes,
-            1
-        );
-
-        opacity(
-            ganeshaEars,
-            1
-        );
-
-        opacity(
-            ganeshaTrunk,
-            1
-        );
-
-        opacity(
-            ganeshaFace,
-            progress(
-                time,
-                22,
-                24
-            )
-        );
-
-        text(
-            "Divine Face"
+        setOpacity(
+            face,
+            between(time, 22, 24)
         );
 
         return;
     }
 
 
-    // 24–26 HANDS
+    /* -----------------------------------------
+       24–26 HANDS
+    ----------------------------------------- */
+
     if (
         time >= 24 &&
         time < 26
     ) {
 
-        opacity(
-            ganeshaCrown,
-            1
-        );
-
-        opacity(
-            ganeshaEyes,
-            1
-        );
-
-        opacity(
-            ganeshaEars,
-            1
-        );
-
-        opacity(
-            ganeshaTrunk,
-            1
-        );
-
-        opacity(
-            ganeshaFace,
-            1
-        );
-
+        setOpacity(crown, 1);
+        setOpacity(eyes, 1);
+        setOpacity(ears, 1);
+        setOpacity(trunk, 1);
+        setOpacity(face, 1);
 
         const p =
-            progress(
-                time,
-                24,
-                26
-            );
+            between(time, 24, 26);
 
 
-        // LEFT HAND
-        if (
-            p < 0.5
-        ) {
+        if (p < 0.5) {
 
-            opacity(
-                ganeshaLeftHand,
+            setOpacity(
+                leftHand,
                 p * 2
             );
 
-            opacity(
-                ganeshaRightHand,
+            setOpacity(
+                rightHand,
                 0
             );
 
-        }
+        } else {
 
-        // RIGHT HAND
-        else {
-
-            opacity(
-                ganeshaLeftHand,
+            setOpacity(
+                leftHand,
                 1
             );
 
-            opacity(
-                ganeshaRightHand,
+            setOpacity(
+                rightHand,
                 (p - 0.5) * 2
             );
         }
-
-
-        text(
-            "Blessing Hands"
-        );
 
         return;
     }
 
 
-    // 26–28 ORNAMENTS
+    /* -----------------------------------------
+       26–28 ORNAMENTS
+    ----------------------------------------- */
+
     if (
         time >= 26 &&
         time < 28
     ) {
 
-        opacity(
-            ganeshaCrown,
-            1
-        );
+        setOpacity(crown, 1);
+        setOpacity(eyes, 1);
+        setOpacity(ears, 1);
+        setOpacity(trunk, 1);
+        setOpacity(face, 1);
 
-        opacity(
-            ganeshaEyes,
-            1
-        );
+        setOpacity(leftHand, 1);
+        setOpacity(rightHand, 1);
 
-        opacity(
-            ganeshaEars,
-            1
-        );
-
-        opacity(
-            ganeshaTrunk,
-            1
-        );
-
-        opacity(
-            ganeshaFace,
-            1
-        );
-
-        opacity(
-            ganeshaLeftHand,
-            1
-        );
-
-        opacity(
-            ganeshaRightHand,
-            1
-        );
-
-        opacity(
-            ganeshaOrnaments,
-            progress(
-                time,
-                26,
-                28
-            )
-        );
-
-        text(
-            "Sacred Ornaments"
+        setOpacity(
+            ornaments,
+            between(time, 26, 28)
         );
 
         return;
     }
 
 
-    // 28+ COMPLETE
-    if (
-        time >= 28
-    ) {
+    /* -----------------------------------------
+       28+ COMPLETE GANESHA
+    ----------------------------------------- */
 
-        opacity(
-            ganeshaComplete,
+    if (time >= 28) {
+
+        /*
+         * Individual reveal layers disappear.
+         * Complete image becomes the final
+         * perfectly aligned idol.
+         */
+
+        setOpacity(crown, 0);
+        setOpacity(eyes, 0);
+        setOpacity(ears, 0);
+        setOpacity(trunk, 0);
+        setOpacity(face, 0);
+
+        setOpacity(leftHand, 0);
+        setOpacity(rightHand, 0);
+        setOpacity(ornaments, 0);
+
+
+        setOpacity(
+            ganeshaBase,
             1
-        );
-
-        text(
-            time < 32
-                ? "Complete Ganesha"
-                : "Final Darshan"
         );
     }
 }
 
 
-// ============================================================
-// AURA
-// ============================================================
+/* =========================================================
+   DIYAS
+   30–32 SECONDS
+========================================================= */
 
-function animateAura(
-    time
-) {
+function animateDiyas(time) {
 
-    if (
-        time < 28
-    ) {
-
-        opacity(
-            divineGlow,
-            0
-        );
-
-        return;
-    }
-
-
-    if (
-        time < 30
-    ) {
-
-        const p =
-            progress(
-                time,
-                28,
-                30
-            );
-
-        opacity(
-            divineGlow,
-            p
-        );
-
-        divineGlow.style.transform =
-            `
-            translate(-50%, -50%)
-            scale(${0.7 + p * 0.4})
-            `;
-
-        return;
-    }
-
-
-    const breathe =
-        0.9 +
-        Math.sin(
-            time * 1.5
-        ) * 0.1;
-
-
-    opacity(
-        divineGlow,
-        breathe
-    );
-
-    divineGlow.style.transform =
-        `
-        translate(-50%, -50%)
-        scale(${1 + Math.sin(time) * 0.04})
-        `;
-}
-
-
-// ============================================================
-// DIYAS
-// ============================================================
-
-function animateDiyas(
-    time
-) {
-
-    opacity(
-        leftDiya,
-        0
-    );
-
-    opacity(
-        rightDiya,
-        0
-    );
-
-
-    // 30–32
     if (
         time >= 30 &&
         time < 32
     ) {
 
         const p =
-            progress(
-                time,
-                30,
-                32
-            );
+            between(time, 30, 32);
 
-
-        opacity(
+        setOpacity(
             leftDiya,
             p
         );
 
-        opacity(
+        setOpacity(
             rightDiya,
             p
         );
-
 
         leftDiya.style.transform =
             `
@@ -943,36 +590,60 @@ function animateDiyas(
     }
 
 
-    if (
-        time >= 32
-    ) {
+    if (time >= 32) {
 
-        opacity(
-            leftDiya,
-            1
-        );
+        setOpacity(leftDiya, 1);
+        setOpacity(rightDiya, 1);
 
-        opacity(
-            rightDiya,
-            1
-        );
+        leftDiya.style.transform =
+            `translateY(0) scale(1)`;
+
+        rightDiya.style.transform =
+            `translateY(0) scale(1)`;
     }
 }
 
 
-// ============================================================
-// FINAL WISH
-// ============================================================
+/* =========================================================
+   FINAL GLOW
+   30+ SECONDS
+========================================================= */
 
-function animateWish(
-    time
-) {
+function animateFinalGlow(time) {
 
-    opacity(
-        finalWish,
-        0
-    );
+    if (time < 30) {
 
+        document.documentElement
+            .style
+            .setProperty(
+                "--final-glow",
+                "0"
+            );
+
+        return;
+    }
+
+
+    const pulse =
+        0.65 +
+        Math.sin(time * 2) * 0.12;
+
+
+    document.documentElement
+        .style
+        .setProperty(
+            "--final-glow",
+            pulse
+        );
+}
+
+
+/* =========================================================
+   HAPPY GANESH CHATURTHI
+   34–36 SECONDS
+========================================================= */
+
+function animateWish(time) {
 
     if (
         time >= 34 &&
@@ -980,228 +651,94 @@ function animateWish(
     ) {
 
         const p =
-            progress(
-                time,
-                34,
-                36
-            );
+            between(time, 34, 36);
 
-        opacity(
-            finalWish,
+        setOpacity(
+            wish,
             p
         );
 
-        finalWish.style.transform =
+        wish.style.transform =
             `
-            translateY(-50%)
-            translateX(${40 - p * 40}px)
+            translate(-50%, -50%)
+            scale(${0.92 + p * 0.08})
             `;
 
         return;
     }
 
 
-    if (
-        time >= 36
-    ) {
+    if (time >= 36) {
 
-        opacity(
-            finalWish,
-            1
-        );
+        setOpacity(wish, 1);
 
-        finalWish.style.transform =
+        wish.style.transform =
             `
-            translateY(-50%)
-            translateX(0)
+            translate(-50%, -50%)
+            scale(1)
             `;
     }
 }
 
 
-// ============================================================
-// FINAL BLESSING
-// ============================================================
+/* =========================================================
+   FINAL BLESSING
+   36+ SECONDS
+========================================================= */
 
-function animateBlessing(
-    time
-) {
+function animateBlessing(time) {
 
-    opacity(
-        finalBlessing,
-        0
-    );
+    /*
+     * Keep the final blessing subtle.
+     * It appears after the wishes without
+     * removing the main Ganesha experience.
+     */
 
+    if (time < 36) {
 
-    if (
-        time >= 38 &&
-        time < 40
-    ) {
-
-        opacity(
-            finalBlessing,
-            progress(
-                time,
-                38,
-                40
-            )
+        setOpacity(
+            blessing,
+            0
         );
 
         return;
     }
 
 
-    if (
-        time >= 40
-    ) {
+    /*
+     * Very subtle final overlay.
+     */
 
-        opacity(
-            finalBlessing,
-            1
+    if (time >= 36 && time < 38) {
+
+        const p =
+            between(time, 36, 38);
+
+        setOpacity(
+            blessing,
+            p * 0.88
+        );
+
+        return;
+    }
+
+
+    if (time >= 38) {
+
+        setOpacity(
+            blessing,
+            0.88
         );
     }
 }
 
 
-// ============================================================
-// MAIN TIMELINE
-// ============================================================
+/* =========================================================
+   MAIN TIMELINE
+========================================================= */
 
-function update(
-    time
-) {
+function update(time) {
 
-    // --------------------------------------------------------
-    // 0–2
-    // BLACK
-    // --------------------------------------------------------
-
-    if (
-        time < 2
-    ) {
-
-        text("");
-
-    }
-
-
-    // --------------------------------------------------------
-    // 2–4
-    // LIGHT
-    // --------------------------------------------------------
-
-    else if (
-        time < 4
-    ) {
-
-        text(
-            "A Divine Light"
-        );
-
-    }
-
-
-    // --------------------------------------------------------
-    // 4–6
-    // PARTICLES
-    // --------------------------------------------------------
-
-    else if (
-        time < 6
-    ) {
-
-        text(
-            "Divine Energy"
-        );
-
-    }
-
-
-    // --------------------------------------------------------
-    // 6–8
-    // LOTUS CENTER
-    // --------------------------------------------------------
-
-    else if (
-        time < 8
-    ) {
-
-        text(
-            "Lotus Awakens"
-        );
-
-    }
-
-
-    // --------------------------------------------------------
-    // 8–10
-    // LOTUS OPENING
-    // --------------------------------------------------------
-
-    else if (
-        time < 10
-    ) {
-
-        text(
-            "Lotus Petals Open"
-        );
-
-    }
-
-
-    // --------------------------------------------------------
-    // 10–12
-    // FULL LOTUS
-    // --------------------------------------------------------
-
-    else if (
-        time < 12
-    ) {
-
-        text(
-            "Sacred Lotus"
-        );
-
-    }
-
-
-    // --------------------------------------------------------
-    // 12–14
-    // SEAT
-    // --------------------------------------------------------
-
-    else if (
-        time < 14
-    ) {
-
-        text(
-            "Divine Seat"
-        );
-
-    }
-
-
-    // --------------------------------------------------------
-    // 34+
-    // FINAL
-    // --------------------------------------------------------
-
-    else {
-
-        if (
-            time < 36
-        ) {
-
-            text("");
-
-        } else {
-
-            text("");
-        }
-    }
-
-
-    // Run systems
     animateLight(time);
 
     animateLotus(time);
@@ -1210,9 +747,9 @@ function update(
 
     animateGanesha(time);
 
-    animateAura(time);
-
     animateDiyas(time);
+
+    animateFinalGlow(time);
 
     animateWish(time);
 
@@ -1220,65 +757,55 @@ function update(
 }
 
 
-// ============================================================
-// AUTOMATIC START
-// ============================================================
+/* =========================================================
+   START EXPERIENCE
+========================================================= */
 
-const start =
+resetAll();
+
+
+const startTime =
     performance.now();
 
 
-function loop(
-    now
-) {
+function animationLoop(now) {
 
-    const time =
-        (
-            now -
-            start
-        ) / 1000;
+    const elapsed =
+        (now - startTime) / 1000;
 
 
-    update(
-        time
-    );
+    update(elapsed);
 
 
     requestAnimationFrame(
-        loop
+        animationLoop
     );
 }
 
 
 requestAnimationFrame(
-    loop
+    animationLoop
 );
 
 
-// ============================================================
-// IMAGE LOAD CHECK
-// ============================================================
+/* =========================================================
+   IMAGE ERROR CHECK
+========================================================= */
 
-const images =
-    document.querySelectorAll(
-        "img"
-    );
-
-
-images.forEach(
-    image => {
+document
+    .querySelectorAll("img")
+    .forEach(image => {
 
         image.addEventListener(
             "error",
             () => {
 
                 console.error(
-                    "Image failed:",
+                    "Could not load:",
                     image.src
                 );
 
             }
         );
 
-    }
-);
+    });
