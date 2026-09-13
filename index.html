@@ -1,42 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>
-        Ganesh Chaturthi 2026 | A Divine Blessing
-    </title>
+    <title>Ganesh Chaturthi 2026 | A Divine Blessing</title>
 
     <link rel="stylesheet" href="style.css">
-
-    <script type="importmap">
-    {
-        "imports": {
-            "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"
-        }
-    }
-    </script>
 </head>
 
 <body>
 
 <main id="experience">
 
-    <canvas id="ganeshCanvas"></canvas>
+    <div id="scene">
 
-    <div id="cinematicGlow"></div>
+        <!-- Divine atmosphere -->
+        <div id="divineLight"></div>
+        <div id="energyRing"></div>
+        <div id="particles"></div>
 
-    <div id="sceneTime">00:00</div>
+        <!-- Single Ganesha image -->
+        <div id="ganeshaReveal">
 
+            <img
+                id="ganeshaImage"
+                src="ganesha.png"
+                alt="Lord Ganesha"
+            >
+
+        </div>
+
+        <!-- Golden aura -->
+        <div id="aura"></div>
+
+        <!-- Timeline text -->
+        <div id="stageText"></div>
+
+    </div>
+
+    <!-- Final blessing -->
     <section id="finalMessage">
 
-        <div class="message-inner">
+        <div class="messageContent">
 
-            <div class="om">
+            <div class="sanskrit">
                 ॐ श्री गणेशाय नमः
             </div>
 
@@ -54,7 +62,7 @@
                 wisdom and success.
             </p>
 
-            <div class="blessing">
+            <div class="flowerLine">
                 🌺 A Divine Blessing 🌺
             </div>
 
@@ -68,7 +76,7 @@
 
 </main>
 
-<script type="module" src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
