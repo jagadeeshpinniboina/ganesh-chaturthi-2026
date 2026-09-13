@@ -1,8 +1,3 @@
-/* =========================================================
-   GANESH CHATURTHI 2026
-   CINEMATIC BLACK BACKGROUND
-========================================================= */
-
 * {
     margin: 0;
     padding: 0;
@@ -19,10 +14,9 @@ body {
 
 body {
     font-family: Georgia, "Times New Roman", serif;
-    color: #fff;
 }
 
-#experience {
+#scene {
     position: relative;
     width: 100vw;
     height: 100vh;
@@ -30,649 +24,314 @@ body {
     background: #000;
 }
 
-
-/* =========================================================
-   PURE BLACK BACKGROUND
-========================================================= */
-
+/* Background */
 .background {
     position: absolute;
     inset: 0;
     background: #000;
-    z-index: 0;
 }
 
-
-/* =========================================================
-   DIVINE LIGHT
-========================================================= */
-
-#divineLight,
-#lightExpand {
+/* Common image settings */
+#scene img {
     position: absolute;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Divine Light */
+#divineLight {
     left: 50%;
     top: 50%;
-
-    width: min(65vw, 750px);
-    height: min(65vw, 750px);
-
-    object-fit: contain;
-
-    transform: translate(-50%, -50%) scale(0.2);
-
+    width: min(24vw, 280px);
+    transform: translate(-50%, -50%) scale(0);
     opacity: 0;
-
-    pointer-events: none;
-}
-
-#divineLight {
-    z-index: 3;
 }
 
 #lightExpand {
-    z-index: 2;
+    left: 50%;
+    top: 50%;
+    width: min(70vw, 850px);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
 }
-
-
-/* =========================================================
-   PARTICLES
-========================================================= */
 
 #particles {
-    position: absolute;
-
     left: 50%;
     top: 50%;
-
-    width: min(95vw, 1200px);
-    height: min(85vh, 850px);
-
-    object-fit: contain;
-
-    transform:
-        translate(-50%, -50%)
-        scale(0.7);
-
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
     opacity: 0;
-
-    z-index: 4;
-
-    pointer-events: none;
-
-    animation: particlesFloat 8s ease-in-out infinite;
 }
 
-@keyframes particlesFloat {
-
-    0% {
-        transform:
-            translate(-50%, -50%)
-            scale(0.98)
-            rotate(0deg);
-    }
-
-    50% {
-        transform:
-            translate(-50%, -51%)
-            scale(1.03)
-            rotate(1deg);
-    }
-
-    100% {
-        transform:
-            translate(-50%, -50%)
-            scale(0.98)
-            rotate(0deg);
-    }
-}
-
-
-/* =========================================================
-   LOTUS
-========================================================= */
-
+/* Lotus */
 #lotusStage {
     position: absolute;
-
     left: 50%;
-    top: 65%;
-
-    width: min(82vw, 1000px);
-    height: min(45vh, 470px);
-
+    top: 57%;
+    width: min(42vw, 550px);
+    height: min(42vw, 550px);
     transform: translate(-50%, -50%);
-
-    z-index: 10;
-
-    pointer-events: none;
 }
 
-.lotusImage {
-    position: absolute;
-
+#lotusStage img {
     left: 50%;
     top: 50%;
-
     width: 100%;
     height: 100%;
-
     object-fit: contain;
-
-    transform:
-        translate(-50%, -50%)
-        scale(0.65);
-
+    transform: translate(-50%, -50%) scale(0);
     opacity: 0;
-
-    filter:
-        drop-shadow(
-            0 0 22px
-            rgba(255, 170, 45, 0.55)
-        );
 }
 
-
-/* =========================================================
-   GOLDEN SEAT
-========================================================= */
-
-#goldenSeat {
+/* Ganesha */
+#ganeshaStage {
     position: absolute;
-
     left: 50%;
-    top: 70%;
-
-    width: min(68vw, 820px);
-    height: min(32vh, 330px);
-
-    object-fit: contain;
-
-    transform:
-        translate(-50%, -50%)
-        scale(0.6);
-
-    opacity: 0;
-
-    z-index: 15;
-
-    filter:
-        drop-shadow(
-            0 0 20px
-            rgba(255, 183, 55, 0.65)
-        );
-}
-
-
-/* =========================================================
-   GANESHA MAIN REVEAL
-========================================================= */
-
-#ganeshaReveal {
-    position: absolute;
-
-    left: 50%;
-    top: 49%;
-
-    width: min(76vw, 1000px);
-    height: min(86vh, 900px);
-
+    top: 53%;
+    width: min(55vw, 720px);
+    height: min(78vh, 820px);
     transform: translate(-50%, -50%);
-
-    z-index: 25;
-
-    pointer-events: none;
-
-    opacity: 1;
 }
 
-
-/* =========================================================
-   BASE IMAGE
-========================================================= */
-
-#ganeshaBase {
-    position: absolute;
-
+#ganesha {
     left: 50%;
-    top: 50%;
-
+    bottom: 0;
     width: 100%;
     height: 100%;
-
     object-fit: contain;
-
-    transform:
-        translate(-50%, -50%);
-
+    object-position: center bottom;
+    transform: translateX(-50%) scale(0.92);
     opacity: 0;
-
-    filter:
-        drop-shadow(
-            0 0 25px
-            rgba(255, 183, 55, 0.35)
-        );
 }
 
-
-/* =========================================================
-   REVEAL LAYERS
-
-   Every layer uses THE SAME COMPLETE IMAGE.
-   This keeps every part perfectly aligned.
-========================================================= */
-
-.reveal {
-    position: absolute;
-
-    left: 0;
-    top: 0;
-
-    width: 100%;
-    height: 100%;
-
-    overflow: hidden;
-
-    opacity: 0;
-
-    pointer-events: none;
-}
-
-.reveal img {
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-
-    transform:
-        translate(-50%, -50%);
-
-    filter:
-        drop-shadow(
-            0 0 15px
-            rgba(255, 190, 70, 0.25)
-        );
-}
-
-
-/* =========================================================
-   CROWN
-========================================================= */
-
-.reveal.crown {
-    clip-path: polygon(
-        25% 0%,
-        75% 0%,
-        82% 27%,
-        18% 27%
-    );
-}
-
-
-/* =========================================================
-   EYES
-========================================================= */
-
-.reveal.eyes {
-    clip-path: polygon(
-        28% 22%,
-        72% 22%,
-        75% 43%,
-        25% 43%
-    );
-}
-
-
-/* =========================================================
-   EARS
-========================================================= */
-
-.reveal.ears {
-    clip-path: polygon(
-        5% 25%,
-        95% 25%,
-        95% 57%,
-        5% 57%
-    );
-}
-
-
-/* =========================================================
-   TRUNK
-========================================================= */
-
-.reveal.trunk {
-    clip-path: polygon(
-        38% 30%,
-        62% 30%,
-        70% 70%,
-        48% 67%,
-        30% 55%
-    );
-}
-
-
-/* =========================================================
-   FACE
-========================================================= */
-
-.reveal.face {
-    clip-path: polygon(
-        25% 22%,
-        75% 22%,
-        82% 58%,
-        68% 65%,
-        32% 65%,
-        18% 58%
-    );
-}
-
-
-/* =========================================================
-   LEFT HAND
-========================================================= */
-
-.reveal.left-hand {
-    clip-path: polygon(
-        5% 35%,
-        35% 35%,
-        38% 75%,
-        5% 75%
-    );
-}
-
-
-/* =========================================================
-   RIGHT HAND
-========================================================= */
-
-.reveal.right-hand {
-    clip-path: polygon(
-        65% 35%,
-        95% 35%,
-        95% 75%,
-        62% 75%
-    );
-}
-
-
-/* =========================================================
-   ORNAMENTS
-========================================================= */
-
-.reveal.ornaments {
-    clip-path: polygon(
-        25% 52%,
-        75% 52%,
-        82% 85%,
-        18% 85%
-    );
-}
-
-
-/* =========================================================
-   DIVINE GLOW
-========================================================= */
-
-#ganeshaReveal::after {
-    content: "";
-
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    width: 55%;
-    height: 55%;
-
-    transform:
-        translate(-50%, -50%)
-        scale(0.8);
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255, 192, 64, 0.32),
-            rgba(255, 150, 20, 0.12) 35%,
-            transparent 70%
-        );
-
-    filter: blur(20px);
-
-    opacity: 0;
-
-    z-index: -1;
-}
-
-
-/* =========================================================
-   DIYAS
-========================================================= */
-
-.diya {
-    position: absolute;
-
+/* Diyas */
+#diyaLeft,
+#diyaRight {
+    width: min(12vw, 150px);
     bottom: 7%;
-
-    width: min(15vw, 190px);
-    height: min(25vh, 260px);
-
-    object-fit: contain;
-
     opacity: 0;
-
-    z-index: 40;
-
-    filter:
-        drop-shadow(
-            0 0 20px
-            rgba(255, 173, 45, 0.75)
-        );
 }
 
-#leftDiya {
-    left: 5%;
+#diyaLeft {
+    left: 7%;
 }
 
-#rightDiya {
-    right: 5%;
+#diyaRight {
+    right: 7%;
 }
 
-
-/* =========================================================
-   FINAL WISH
-========================================================= */
-
+/* Wishes */
 #wish {
     position: absolute;
-
     left: 50%;
-    top: 50%;
-
-    width: min(90vw, 850px);
-
-    transform:
-        translate(-50%, -50%)
-        scale(0.95);
-
+    bottom: 7%;
+    width: min(90vw, 900px);
+    transform: translateX(-50%) translateY(30px);
     text-align: center;
-
     opacity: 0;
-
-    z-index: 70;
-
-    pointer-events: none;
-}
-
-#wish .om {
-    font-size: clamp(30px, 4vw, 55px);
-
-    color: #ffd56d;
-
-    margin-bottom: 15px;
-
+    z-index: 20;
     text-shadow:
-        0 0 20px
-        rgba(255, 180, 45, 0.9);
+        0 0 8px rgba(255, 200, 80, 0.8),
+        0 0 25px rgba(255, 170, 30, 0.5);
 }
 
 #wish h1 {
-    font-size: clamp(32px, 5vw, 70px);
-
-    font-weight: 500;
-
-    color: #ffd56d;
-
-    text-shadow:
-        0 0 20px
-        rgba(255, 180, 45, 0.8);
+    font-size: clamp(28px, 4vw, 52px);
+    margin-bottom: 8px;
+    color: #ffd66b;
 }
 
 #wish h2 {
-    margin-top: 15px;
-
-    font-size: clamp(20px, 2.5vw, 35px);
-
-    color: #ffcf72;
+    font-size: clamp(20px, 2.5vw, 34px);
+    margin-bottom: 12px;
+    color: #ffe7a3;
 }
 
 #wish p {
-    max-width: 720px;
-
-    margin: 25px auto 0;
-
-    font-size: clamp(16px, 1.5vw, 23px);
-
-    line-height: 1.7;
-
-    color: #f1e5c8;
+    max-width: 760px;
+    margin: auto;
+    color: #fff1c9;
+    font-size: clamp(14px, 1.5vw, 20px);
+    line-height: 1.5;
 }
 
-.wishLine {
-    margin-top: 25px;
-
-    color: #ffd56d;
-
-    font-size: 25px;
-}
-
-
-/* =========================================================
-   FINAL BLESSING
-========================================================= */
-
+/* Blessing */
 #blessing {
     position: absolute;
-
     inset: 0;
+    z-index: 30;
 
     display: flex;
-
     flex-direction: column;
-
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
     text-align: center;
 
-    background: #000;
+    background: rgba(0, 0, 0, 0.55);
 
     opacity: 0;
-
-    z-index: 100;
-
     pointer-events: none;
-}
-
-#blessing > div {
-    font-size: clamp(20px, 2vw, 32px);
-
-    color: #ffd56d;
-
-    margin-bottom: 25px;
 
     text-shadow:
-        0 0 18px
-        rgba(255, 180, 45, 0.8);
+        0 0 10px rgba(255, 210, 100, 0.8),
+        0 0 30px rgba(255, 180, 40, 0.45);
 }
 
-#blessing h1 {
-    font-size: clamp(38px, 6vw, 82px);
-
-    font-weight: 500;
-
-    color: #ffd56d;
-
-    text-shadow:
-        0 0 25px
-        rgba(255, 180, 45, 0.8);
+#blessing div {
+    color: #ffe29a;
+    font-size: clamp(22px, 3vw, 40px);
+    margin-bottom: 18px;
 }
 
-#blessing p {
-    margin-top: 20px;
-
-    font-size: clamp(18px, 2vw, 30px);
-
-    color: #e9d8ae;
+#blessing strong {
+    color: #fff0bd;
+    font-size: clamp(30px, 5vw, 65px);
+    font-weight: normal;
+    margin-bottom: 12px;
 }
 
+#blessing span {
+    color: #ffe9b0;
+    font-size: clamp(18px, 2.2vw, 30px);
+}
 
-/* =========================================================
-   MOBILE
-========================================================= */
+/* Animation classes */
+.show {
+    opacity: 1 !important;
+}
 
-@media (max-width: 700px) {
+.scale-in {
+    animation: scaleIn 2s ease forwards;
+}
+
+.ganesha-in {
+    animation: ganeshaIn 2s ease forwards;
+}
+
+.diya-in {
+    animation: diyaIn 1.8s ease forwards;
+}
+
+.wish-in {
+    animation: wishIn 2s ease forwards;
+}
+
+.blessing-in {
+    animation: blessingIn 2s ease forwards;
+}
+
+/* Animations */
+@keyframes scaleIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes ganeshaIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.82);
+        filter: brightness(0.4);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.02);
+        filter: brightness(1.15);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) scale(0.92);
+        filter: brightness(1);
+    }
+}
+
+@keyframes diyaIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+        filter: brightness(0.5);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.08);
+        filter: brightness(1.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: brightness(1);
+    }
+}
+
+@keyframes wishIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes blessingIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
 
     #lotusStage {
-        width: 100vw;
-        height: 42vh;
-        top: 67%;
+        top: 58%;
+        width: 75vw;
+        height: 75vw;
     }
 
-    #goldenSeat {
+    #ganeshaStage {
         width: 88vw;
-        top: 71%;
+        height: 75vh;
     }
 
-    #ganeshaReveal {
-        width: 105vw;
-        height: 78vh;
-        top: 49%;
+    #diyaLeft,
+    #diyaRight {
+        width: 22vw;
+        bottom: 5%;
     }
 
-    .diya {
-        width: 24vw;
-        height: 20vh;
-        bottom: 4%;
+    #diyaLeft {
+        left: 2%;
     }
 
-    #leftDiya {
-        left: 0;
-    }
-
-    #rightDiya {
-        right: 0;
+    #diyaRight {
+        right: 2%;
     }
 
     #wish {
-        width: 94vw;
-    }
-
-    #wish h1 {
-        font-size: 31px;
-    }
-
-    #wish h2 {
-        font-size: 20px;
-    }
-
-    #wish p {
-        font-size: 15px;
+        bottom: 5%;
     }
 }
