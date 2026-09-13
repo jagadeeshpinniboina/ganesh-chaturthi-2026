@@ -3,57 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Happy Ganesh Chaturthi</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <main id="scene">
+    <div id="scene">
 
-        <!-- Background -->
+        <!-- =========================================
+             BLACK BACKGROUND
+        ========================================== -->
         <div class="background"></div>
 
-        <!-- Divine Light -->
-        <img id="divineLight" src="./divine-light.png" alt="">
-        <img id="lightExpand" src="./light-expand.png" alt="">
-        <img id="particles" src="./particles.png" alt="">
 
-        <!-- Lotus -->
+        <!-- =========================================
+             DIVINE LIGHT
+             2–6 seconds
+        ========================================== -->
+        <img
+            id="divineLight"
+            src="./divine-light.png"
+            alt=""
+        >
+
+        <img
+            id="lightExpand"
+            src="./light-expand.png"
+            alt=""
+        >
+
+        <img
+            id="particles"
+            src="./particles.png"
+            alt=""
+        >
+
+
+        <!-- =========================================
+             LOTUS
+             6–14 seconds
+        ========================================== -->
         <div id="lotusStage">
-            <img id="lotusCenter" src="./lotus-center.png" alt="">
-            <img id="lotusOpening" src="./lotus-opening.png" alt="">
-            <img id="lotusFull" src="./lotus-full.png" alt="">
-            <img id="lotusSeat" src="./lotus-seat.png" alt="">
+
+            <img
+                id="lotusCenter"
+                src="./lotus-center.png"
+                alt=""
+            >
+
+            <img
+                id="lotusOpening"
+                src="./lotus-opening.png"
+                alt=""
+            >
+
+            <img
+                id="lotusFull"
+                src="./lotus-full.png"
+                alt=""
+            >
+
+            <img
+                id="lotusSeat"
+                src="./lotus-seat.png"
+                alt=""
+            >
+
         </div>
 
-        <!-- Ganesha -->
+
+        <!-- =========================================
+             GANESHA
+             14–30 seconds
+             
+             ONE COMPLETE IMAGE ONLY
+             No separate body-part images
+        ========================================== -->
         <div id="ganeshaStage">
-            <img id="ganesha" src="./ganesha-complete.png" alt="Lord Ganesha">
+
+            <img
+                id="ganesha"
+                src="./ganesha-complete.png"
+                alt="Lord Ganesha"
+            >
+
         </div>
 
-        <!-- Diyas -->
-        <img id="diyaLeft" src="./diya-left.png" alt="">
-        <img id="diyaRight" src="./diya-right.png" alt="">
 
-        <!-- Final Wishes -->
+        <!-- =========================================
+             DIYAS
+             32–34 seconds
+        ========================================== -->
+
+        <img
+            id="diyaLeft"
+            src="./diya-left.png"
+            alt=""
+        >
+
+        <img
+            id="diyaRight"
+            src="./diya-right.png"
+            alt=""
+        >
+
+
+        <!-- =========================================
+             FINAL WISH
+             34–36 seconds
+        ========================================== -->
+
         <section id="wish">
-            <h1>Happy Ganesh Chaturthi</h1>
-            <h2>వినాయక చవితి శుభాకాంక్షలు</h2>
+
+            <h1>
+                Happy Ganesh Chaturthi
+            </h1>
+
+            <h2>
+                వినాయక చవితి శుభాకాంక్షలు
+            </h2>
+
             <p>
-                May Lord Ganesha remove all obstacles and fill your life
-                with happiness, wisdom and success.
+                May Lord Ganesha remove all obstacles
+                and fill your life with happiness,
+                wisdom and success.
             </p>
+
         </section>
+
+
+        <!-- =========================================
+             FINAL BLESSING
+             36+ seconds
+        ========================================== -->
 
         <section id="blessing">
-            <div>|| श्री गणेशाय नमः ||</div>
-            <strong>A Divine Blessing</strong>
-            <span>Always with You...</span>
+
+            <div>
+                || श्री गणेशाय नमः ||
+            </div>
+
+            <strong>
+                A Divine Blessing
+            </strong>
+
+            <span>
+                Always with You...
+            </span>
+
         </section>
 
-    </main>
+    </div>
 
+
+    <!-- JavaScript -->
     <script src="script.js"></script>
+
 </body>
 </html>
