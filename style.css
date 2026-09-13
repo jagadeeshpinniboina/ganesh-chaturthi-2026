@@ -1,417 +1,895 @@
-const divineLight = document.getElementById("divineLight");
-const lightExpand = document.getElementById("lightExpand");
-const particles = document.getElementById("particles");
+/* =====================================================
+   RESET
+===================================================== */
 
-const lotusCenter = document.getElementById("lotusCenter");
-const lotusOpening = document.getElementById("lotusOpening");
-const lotusFull = document.getElementById("lotusFull");
-const lotusSeat = document.getElementById("lotusSeat");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-const ganeshaStage = document.getElementById("ganeshaStage");
-const ganesha = document.getElementById("ganesha");
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+}
 
-const diyaLeft = document.getElementById("diyaLeft");
-const diyaRight = document.getElementById("diyaRight");
-
-const wish = document.getElementById("wish");
-const blessing = document.getElementById("blessing");
+body {
+    font-family: Georgia, "Times New Roman", serif;
+}
 
 
 /* =====================================================
-   HELPER
+   MAIN SCENE
 ===================================================== */
 
-function addClass(element, className) {
-    if (element) {
-        element.classList.add(className);
+#scene {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+}
+
+
+/* =====================================================
+   BLACK BACKGROUND
+===================================================== */
+
+.background {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 0;
+}
+
+
+/* =====================================================
+   COMMON IMAGE SETTINGS
+===================================================== */
+
+#scene img {
+    position: absolute;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+}
+
+
+/* =====================================================
+   DIVINE LIGHT
+   2–4 seconds
+===================================================== */
+
+#divineLight {
+    left: 50%;
+    top: 50%;
+    width: min(24vw, 280px);
+
+    transform:
+        translate(-50%, -50%)
+        scale(0);
+
+    opacity: 0;
+    z-index: 2;
+}
+
+
+/* =====================================================
+   LIGHT EXPANSION
+   4–6 seconds
+===================================================== */
+
+#lightExpand {
+    left: 50%;
+    top: 50%;
+    width: min(70vw, 850px);
+
+    transform:
+        translate(-50%, -50%)
+        scale(0);
+
+    opacity: 0;
+    z-index: 3;
+}
+
+
+/* =====================================================
+   PARTICLES
+   4–6 seconds
+===================================================== */
+
+#particles {
+    left: 50%;
+    top: 50%;
+
+    width: 100vw;
+    height: 100vh;
+
+    object-fit: cover;
+
+    transform:
+        translate(-50%, -50%);
+
+    opacity: 0;
+    z-index: 4;
+}
+
+
+/* =====================================================
+   LOTUS STAGE
+   6–14 seconds
+===================================================== */
+
+#lotusStage {
+    position: absolute;
+
+    left: 50%;
+    top: 58%;
+
+    width: min(45vw, 560px);
+    height: min(45vw, 560px);
+
+    transform:
+        translate(-50%, -50%);
+
+    z-index: 5;
+}
+
+
+/* =====================================================
+   LOTUS IMAGES
+===================================================== */
+
+#lotusStage img {
+    left: 50%;
+    top: 50%;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.85);
+
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+/* Lotus order */
+
+#lotusCenter {
+    z-index: 1;
+}
+
+#lotusOpening {
+    z-index: 2;
+}
+
+#lotusFull {
+    z-index: 3;
+}
+
+#lotusSeat {
+    z-index: 4;
+}
+
+
+/* =====================================================
+   LOTUS VISIBILITY
+===================================================== */
+
+.lotus-visible {
+    visibility: visible !important;
+
+    animation:
+        lotusAppear 1.7s ease forwards !important;
+}
+
+
+/* =====================================================
+   GANESHA STAGE
+   14–30 seconds
+===================================================== */
+
+#ganeshaStage {
+    position: absolute;
+
+    left: 50%;
+    top: 52%;
+
+    width: min(58vw, 760px);
+    height: min(82vh, 850px);
+
+    transform:
+        translate(-50%, -50%);
+
+    opacity: 1;
+    visibility: visible;
+
+    z-index: 10;
+}
+
+
+/* =====================================================
+   GANESHA PARTS
+===================================================== */
+
+.ganeshaPart {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.88);
+
+    opacity: 0;
+    visibility: hidden;
+
+    filter: brightness(0.75);
+
+    will-change:
+        opacity,
+        transform,
+        filter;
+}
+
+
+/* =====================================================
+   GANESHA STAGE ORDER
+===================================================== */
+
+#ganeshaCrown {
+    z-index: 1;
+}
+
+#ganeshaEyes {
+    z-index: 2;
+}
+
+#ganeshaEars {
+    z-index: 3;
+}
+
+#ganeshaTrunk {
+    z-index: 4;
+}
+
+#ganeshaFace {
+    z-index: 5;
+}
+
+#ganeshaLeftHand {
+    z-index: 6;
+}
+
+#ganeshaRightHand {
+    z-index: 7;
+}
+
+#ganeshaOrnaments {
+    z-index: 8;
+}
+
+#ganeshaComplete {
+    z-index: 9;
+}
+
+
+/* =====================================================
+   GANESHA PART VISIBLE
+===================================================== */
+
+.ganesha-part-visible {
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    animation:
+        ganeshaPartAppear 1.4s ease forwards;
+}
+
+
+/* =====================================================
+   COMPLETE GANESHA
+===================================================== */
+
+.ganesha-complete-visible {
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    animation:
+        completeGaneshaAppear 1.8s ease forwards;
+}
+
+
+/* =====================================================
+   DIVINE GLOW
+===================================================== */
+
+.ganesha-glow {
+    filter:
+        brightness(1.12)
+        drop-shadow(
+            0 0 35px
+            rgba(255, 190, 60, 0.5)
+        ) !important;
+}
+
+.ganesha-final {
+    filter:
+        brightness(1.18)
+        drop-shadow(
+            0 0 60px
+            rgba(255, 200, 80, 0.65)
+        ) !important;
+}
+
+
+/* =====================================================
+   DIYAS
+   32–34 seconds
+===================================================== */
+
+#diyaLeft,
+#diyaRight {
+    width: min(13vw, 160px);
+
+    bottom: 6%;
+
+    opacity: 0;
+    visibility: hidden;
+
+    z-index: 15;
+
+    transform:
+        scale(0.7);
+}
+
+
+/* Left Diya */
+
+#diyaLeft {
+    left: 7%;
+}
+
+
+/* Right Diya */
+
+#diyaRight {
+    right: 7%;
+}
+
+
+/* =====================================================
+   DIYA APPEAR
+===================================================== */
+
+.diya-visible {
+    visibility: visible !important;
+
+    animation:
+        diyaAppear 1.5s ease forwards !important;
+}
+
+
+/* =====================================================
+   WISH SECTION
+   34–36 seconds
+===================================================== */
+
+#wish {
+    position: absolute;
+
+    left: 50%;
+    bottom: 6%;
+
+    width: min(90vw, 900px);
+
+    transform:
+        translateX(-50%)
+        translateY(25px);
+
+    text-align: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    z-index: 20;
+
+    text-shadow:
+        0 0 10px rgba(255, 210, 100, 0.8),
+        0 0 25px rgba(255, 180, 40, 0.5);
+}
+
+
+/* =====================================================
+   WISH HEADING
+===================================================== */
+
+#wish h1 {
+    color: #ffd76b;
+
+    font-size:
+        clamp(28px, 4vw, 52px);
+
+    font-weight: normal;
+
+    margin-bottom: 8px;
+}
+
+
+/* Telugu */
+
+#wish h2 {
+    color: #ffe9ad;
+
+    font-size:
+        clamp(20px, 2.5vw, 34px);
+
+    font-weight: normal;
+
+    margin-bottom: 12px;
+}
+
+
+/* Paragraph */
+
+#wish p {
+    max-width: 760px;
+
+    margin: 0 auto;
+
+    color: #fff2cf;
+
+    font-size:
+        clamp(14px, 1.5vw, 20px);
+
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   WISH APPEAR
+===================================================== */
+
+.wish-visible {
+    visibility: visible !important;
+
+    animation:
+        wishAppear 1.8s ease forwards !important;
+}
+
+
+/* =====================================================
+   FINAL BLESSING
+   36+ seconds
+===================================================== */
+
+#blessing {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 30;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        rgba(0, 0, 0, 0.58);
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    text-shadow:
+        0 0 10px rgba(255, 210, 100, 0.8),
+        0 0 30px rgba(255, 180, 40, 0.5);
+}
+
+
+/* Sanskrit */
+
+#blessing div {
+    color: #ffe3a0;
+
+    font-size:
+        clamp(22px, 3vw, 40px);
+
+    margin-bottom: 18px;
+}
+
+
+/* Main blessing */
+
+#blessing strong {
+    color: #fff0bd;
+
+    font-size:
+        clamp(30px, 5vw, 65px);
+
+    font-weight: normal;
+
+    margin-bottom: 12px;
+}
+
+
+/* Always with you */
+
+#blessing span {
+    color: #ffe9b0;
+
+    font-size:
+        clamp(18px, 2.2vw, 30px);
+}
+
+
+/* =====================================================
+   BLESSING APPEAR
+===================================================== */
+
+.blessing-visible {
+    visibility: visible !important;
+
+    animation:
+        blessingAppear 2s ease forwards !important;
+}
+
+
+/* =====================================================
+   DIVINE LIGHT ANIMATION
+===================================================== */
+
+@keyframes divineLightAppear {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0);
+    }
+
+    60% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.08);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
     }
 }
 
 
 /* =====================================================
-   LOTUS STAGE CONTROL
-
-   Only ONE lotus image is visible at a time.
+   LIGHT EXPANSION
 ===================================================== */
 
-function showLotus(currentLotus) {
+@keyframes lightExpandAppear {
 
-    const lotusImages = [
-        lotusCenter,
-        lotusOpening,
-        lotusFull,
-        lotusSeat
-    ];
+    0% {
+        opacity: 0;
 
-    lotusImages.forEach((image) => {
+        transform:
+            translate(-50%, -50%)
+            scale(0.15);
+    }
 
-        if (image === currentLotus) {
+    60% {
+        opacity: 0.7;
 
-            image.classList.add("lotus-visible");
+        transform:
+            translate(-50%, -50%)
+            scale(1.08);
+    }
 
-        } else {
+    100% {
+        opacity: 0.75;
 
-            image.classList.remove("lotus-visible");
-
-            image.style.animation = "none";
-            image.style.opacity = "0";
-            image.style.visibility = "hidden";
-
-        }
-
-    });
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
 }
 
 
 /* =====================================================
-   RESET
+   PARTICLES
 ===================================================== */
 
-function resetScene() {
+@keyframes particlesAppear {
 
-    /* Light */
+    0% {
+        opacity: 0;
+    }
 
-    divineLight.style.opacity = "0";
-    divineLight.style.visibility = "hidden";
-
-    lightExpand.style.opacity = "0";
-    lightExpand.style.visibility = "hidden";
-
-    particles.style.opacity = "0";
-    particles.style.visibility = "hidden";
-
-
-    /* Lotus */
-
-    [
-        lotusCenter,
-        lotusOpening,
-        lotusFull,
-        lotusSeat
-    ].forEach((image) => {
-
-        image.classList.remove("lotus-visible");
-
-        image.style.animation = "none";
-        image.style.opacity = "0";
-        image.style.visibility = "hidden";
-
-    });
-
-
-    /* Ganesha */
-
-    ganeshaStage.style.opacity = "0";
-    ganeshaStage.style.visibility = "hidden";
-
-    ganesha.classList.remove(
-        "ganesha-visible",
-        "ganesha-glow",
-        "ganesha-final"
-    );
-
-    ganesha.style.animation = "none";
-    ganesha.style.opacity = "0";
-    ganesha.style.visibility = "hidden";
-
-
-    /* Diyas */
-
-    diyaLeft.classList.remove("diya-visible");
-    diyaRight.classList.remove("diya-visible");
-
-    diyaLeft.style.opacity = "0";
-    diyaRight.style.opacity = "0";
-
-    diyaLeft.style.visibility = "hidden";
-    diyaRight.style.visibility = "hidden";
-
-
-    /* Text */
-
-    wish.classList.remove("wish-visible");
-    blessing.classList.remove("blessing-visible");
-
-    wish.style.opacity = "0";
-    wish.style.visibility = "hidden";
-
-    blessing.style.opacity = "0";
-    blessing.style.visibility = "hidden";
+    100% {
+        opacity: 0.85;
+    }
 }
 
 
 /* =====================================================
-   MAIN 36 SECOND SEQUENCE
+   LOTUS APPEAR
 ===================================================== */
 
-function startSequence() {
-
-    resetScene();
-
-
-    /* =================================================
-       0–2 SECONDS
-       BLACK SCREEN
-    ================================================= */
-
-    // Nothing appears.
-
-
-    /* =================================================
-       2–4 SECONDS
-       DIVINE LIGHT
-    ================================================= */
-
-    setTimeout(() => {
-
-        divineLight.style.visibility = "visible";
-
-        divineLight.style.animation =
-            "divineLightAppear 2s ease forwards";
-
-    }, 2000);
-
-
-    /* =================================================
-       4–6 SECONDS
-       LIGHT EXPANSION + PARTICLES
-    ================================================= */
-
-    setTimeout(() => {
-
-        lightExpand.style.visibility = "visible";
-
-        lightExpand.style.animation =
-            "lightExpandAppear 2s ease forwards";
-
-
-        particles.style.visibility = "visible";
-
-        particles.style.animation =
-            "particlesAppear 2s ease forwards";
-
-    }, 4000);
-
-
-    /* =================================================
-       6–8 SECONDS
-       LOTUS CENTER
-    ================================================= */
-
-    setTimeout(() => {
-
-        showLotus(lotusCenter);
-
-    }, 6000);
-
-
-    /* =================================================
-       8–10 SECONDS
-       LOTUS OPENING
-    ================================================= */
-
-    setTimeout(() => {
-
-        showLotus(lotusOpening);
-
-    }, 8000);
-
-
-    /* =================================================
-       10–12 SECONDS
-       FULL LOTUS
-    ================================================= */
-
-    setTimeout(() => {
-
-        showLotus(lotusFull);
-
-    }, 10000);
-
-
-    /* =================================================
-       12–14 SECONDS
-       LOTUS + GOLDEN SEAT
-    ================================================= */
-
-    setTimeout(() => {
-
-        showLotus(lotusSeat);
-
-    }, 12000);
-
-
-    /* =================================================
-       14–16 SECONDS
-       GANESHA APPEARS
-    ================================================= */
-
-    setTimeout(() => {
-
-        ganeshaStage.style.visibility = "visible";
-        ganeshaStage.style.opacity = "1";
-
-        ganesha.style.visibility = "visible";
-
-        ganesha.classList.add("ganesha-visible");
-
-    }, 14000);
-
-
-    /* =================================================
-       16–18 SECONDS
-       SOFT DIVINE BRIGHTNESS
-    ================================================= */
-
-    setTimeout(() => {
-
-        ganesha.style.filter =
-            "brightness(1.03)";
-
-    }, 16000);
-
-
-    /* =================================================
-       18–20 SECONDS
-    ================================================= */
-
-    setTimeout(() => {
-
-        ganesha.style.filter =
-            "brightness(1.06)";
-
-    }, 18000);
-
-
-    /* =================================================
-       20–22 SECONDS
-    ================================================= */
-
-    setTimeout(() => {
-
-        ganesha.style.filter =
-            "brightness(1.08)";
-
-    }, 20000);
-
-
-    /* =================================================
-       22–24 SECONDS
-    ================================================= */
-
-    setTimeout(() => {
-
-        ganesha.style.filter =
-            "brightness(1.10)";
-
-    }, 22000);
-
-
-    /* =================================================
-       24–26 SECONDS
-       DIVINE GLOW
-    ================================================= */
-
-    setTimeout(() => {
-
-        ganesha.classList.add("ganesha-glow");
-
-    }, 24000);
-
-
-    /* =================================================
-       26–28 SECONDS
-       STRONGER GLOW
-    ================================================= */
-
-    setTimeout(() => {
-
-        ganesha.style.filter =
-            "brightness(1.15) drop-shadow(0 0 35px rgba(255,190,60,0.5))";
-
-    }, 26000);
-
-
-    /* =================================================
-       28–30 SECONDS
-       COMPLETE GANESHA
-    ================================================= */
-
-    setTimeout(() => {
-
-        ganesha.classList.add("ganesha-final");
-
-    }, 28000);
-
-
-    /* =================================================
-       30–32 SECONDS
-       FINAL DIVINE GLOW + ZOOM
-    ================================================= */
-
-    setTimeout(() => {
-
-        ganesha.style.transition =
-            "transform 2s ease, filter 2s ease";
-
-        ganesha.style.transform =
-            "translate(-50%, -50%) scale(0.98)";
-
-        ganesha.style.filter =
-            "brightness(1.18) drop-shadow(0 0 60px rgba(255,200,80,0.65))";
-
-    }, 30000);
-
-
-    /* =================================================
-       32–34 SECONDS
-       FINAL DARSHAN + DIYAS
-    ================================================= */
-
-    setTimeout(() => {
-
-        diyaLeft.classList.add("diya-visible");
-
-        diyaRight.classList.add("diya-visible");
-
-        ganesha.style.transform =
-            "translate(-50%, -50%) scale(0.95)";
-
-    }, 32000);
-
-
-    /* =================================================
-       34–36 SECONDS
-       WISHES
-    ================================================= */
-
-    setTimeout(() => {
-
-        wish.classList.add("wish-visible");
-
-    }, 34000);
-
-
-    /* =================================================
-       36+ SECONDS
-       FINAL BLESSING
-    ================================================= */
-
-    setTimeout(() => {
-
-        blessing.classList.add("blessing-visible");
-
-    }, 36000);
-
+@keyframes lotusAppear {
+
+    0% {
+        opacity: 0;
+        visibility: visible;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.72);
+    }
+
+    60% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.04);
+    }
+
+    100% {
+        opacity: 1;
+        visibility: visible;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
 }
 
 
 /* =====================================================
-   START AFTER PAGE LOAD
+   GANESHA PART APPEAR
+   NO DRAWING EFFECT
 ===================================================== */
 
-window.addEventListener("load", () => {
+@keyframes ganeshaPartAppear {
 
-    startSequence();
+    0% {
+        opacity: 0;
 
-});
+        transform:
+            translate(-50%, -50%)
+            scale(0.80);
+
+        filter:
+            brightness(0.45);
+    }
+
+    60% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.96);
+
+        filter:
+            brightness(1.05);
+    }
+
+    100% {
+        opacity: 1;
+        visibility: visible;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.92);
+
+        filter:
+            brightness(1);
+    }
+}
+
+
+/* =====================================================
+   COMPLETE GANESHA APPEAR
+===================================================== */
+
+@keyframes completeGaneshaAppear {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.84);
+
+        filter:
+            brightness(0.5);
+    }
+
+    60% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.98);
+
+        filter:
+            brightness(1.12)
+            drop-shadow(
+                0 0 35px
+                rgba(255, 190, 60, 0.45)
+            );
+    }
+
+    100% {
+        opacity: 1;
+        visibility: visible;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.94);
+
+        filter:
+            brightness(1.12)
+            drop-shadow(
+                0 0 45px
+                rgba(255, 200, 80, 0.55)
+            );
+    }
+}
+
+
+/* =====================================================
+   DIYA APPEAR
+===================================================== */
+
+@keyframes diyaAppear {
+
+    0% {
+        opacity: 0;
+
+        visibility: visible;
+
+        transform:
+            scale(0.65);
+
+        filter:
+            brightness(0.5);
+    }
+
+    65% {
+        opacity: 1;
+
+        transform:
+            scale(1.08);
+
+        filter:
+            brightness(1.4);
+    }
+
+    100% {
+        opacity: 1;
+
+        visibility: visible;
+
+        transform:
+            scale(1);
+
+        filter:
+            brightness(1.05);
+    }
+}
+
+
+/* =====================================================
+   WISH APPEAR
+===================================================== */
+
+@keyframes wishAppear {
+
+    0% {
+        opacity: 0;
+
+        visibility: visible;
+
+        transform:
+            translateX(-50%)
+            translateY(25px);
+    }
+
+    100% {
+        opacity: 1;
+
+        visibility: visible;
+
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+}
+
+
+/* =====================================================
+   BLESSING APPEAR
+===================================================== */
+
+@keyframes blessingAppear {
+
+    0% {
+        opacity: 0;
+        visibility: visible;
+    }
+
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    #lotusStage {
+        width: 78vw;
+        height: 78vw;
+        top: 59%;
+    }
+
+    #ganeshaStage {
+        width: 92vw;
+        height: 76vh;
+        top: 52%;
+    }
+
+    #diyaLeft,
+    #diyaRight {
+        width: 22vw;
+        bottom: 4%;
+    }
+
+    #diyaLeft {
+        left: 2%;
+    }
+
+    #diyaRight {
+        right: 2%;
+    }
+
+    #wish {
+        bottom: 4%;
+    }
+
+    #wish p {
+        padding: 0 15px;
+    }
+}
