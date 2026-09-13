@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Ganesh Chaturthi 2026 | A Divine Blessing</title>
 
@@ -16,109 +13,231 @@
 
     <main id="experience">
 
-        <!-- Main cinematic scene -->
-        <div id="scene">
+        <!-- =========================================
+             CINEMATIC BACKGROUND
+        ========================================== -->
 
-            <!-- Divine light -->
-            <div id="divineLight"></div>
+        <div class="black-background"></div>
 
-            <!-- Expanding golden energy ring -->
-            <div id="energyRing"></div>
+        <div id="goldenParticles"></div>
 
-            <!-- Floating golden particles -->
-            <div id="particles"></div>
+        <div id="divineGlow"></div>
 
-            <!-- Lotus -->
-            <div id="lotus">
-                <div class="lotus-petal petal-1"></div>
-                <div class="lotus-petal petal-2"></div>
-                <div class="lotus-petal petal-3"></div>
-                <div class="lotus-petal petal-4"></div>
-                <div class="lotus-petal petal-5"></div>
-                <div class="lotus-petal petal-6"></div>
-                <div class="lotus-petal petal-7"></div>
-                <div class="lotus-petal petal-8"></div>
-                <div class="lotus-center"></div>
-            </div>
 
-            <!-- Golden seat -->
-            <div id="goldenSeat"></div>
+        <!-- =========================================
+             DIVINE LIGHT
+        ========================================== -->
 
-            <!-- Ganesha image -->
-            <div id="ganeshaContainer">
+        <div id="lightStage">
 
-                <img
-                    id="ganeshaImage"
-                    src="ganesha.png"
-                    alt="Lord Ganesha"
-                >
+            <img
+                id="divineLight"
+                src="./divine-light.png"
+                alt=""
+            >
 
-            </div>
+            <img
+                id="lightExpand"
+                src="./light-expand.png"
+                alt=""
+            >
 
-            <!-- Left diya -->
-            <div id="leftDiya" class="diya">
-
-                <div class="diya-flame"></div>
-
-                <div class="diya-bowl"></div>
-
-                <div class="diya-glow"></div>
-
-            </div>
-
-            <!-- Right diya -->
-            <div id="rightDiya" class="diya">
-
-                <div class="diya-flame"></div>
-
-                <div class="diya-bowl"></div>
-
-                <div class="diya-glow"></div>
-
-            </div>
-
-            <!-- Divine aura -->
-            <div id="divineAura"></div>
+            <img
+                id="particleImage"
+                src="./particles.png"
+                alt=""
+            >
 
         </div>
 
 
-        <!-- Stage description -->
+        <!-- =========================================
+             LOTUS
+        ========================================== -->
+
+        <div id="lotusStage">
+
+            <img
+                id="lotusCenter"
+                class="lotusImage"
+                src="./lotus-center.png"
+                alt=""
+            >
+
+            <img
+                id="lotusOpening"
+                class="lotusImage"
+                src="./lotus-opening.png"
+                alt=""
+            >
+
+            <img
+                id="lotusFull"
+                class="lotusImage"
+                src="./lotus-full.png"
+                alt=""
+            >
+
+        </div>
+
+
+        <!-- =========================================
+             GOLDEN SEAT
+        ========================================== -->
+
+        <img
+            id="goldenSeat"
+            src="./lotus-seat.png"
+            alt=""
+        >
+
+
+        <!-- =========================================
+             GANESHA
+        ========================================== -->
+
+        <div id="ganeshaStage">
+
+            <img
+                id="ganeshaCrown"
+                class="ganeshaPart"
+                src="./ganesha-crown.png"
+                alt=""
+            >
+
+            <img
+                id="ganeshaEyes"
+                class="ganeshaPart"
+                src="./ganesha-eyes.png"
+                alt=""
+            >
+
+            <img
+                id="ganeshaEars"
+                class="ganeshaPart"
+                src="./ganesha-ears.png"
+                alt=""
+            >
+
+            <img
+                id="ganeshaTrunk"
+                class="ganeshaPart"
+                src="./ganesha-trunk.png"
+                alt=""
+            >
+
+            <img
+                id="ganeshaFace"
+                class="ganeshaPart"
+                src="./ganesha-face.png"
+                alt=""
+            >
+
+            <img
+                id="ganeshaLeftHand"
+                class="ganeshaPart"
+                src="./ganesha-left-hand.png"
+                alt=""
+            >
+
+            <img
+                id="ganeshaRightHand"
+                class="ganeshaPart"
+                src="./ganesha-right-hand.png"
+                alt=""
+            >
+
+            <img
+                id="ganeshaOrnaments"
+                class="ganeshaPart"
+                src="./ganesha-ornaments.png"
+                alt=""
+            >
+
+            <img
+                id="ganeshaComplete"
+                class="ganeshaPart"
+                src="./ganesha-complete.png"
+                alt=""
+            >
+
+        </div>
+
+
+        <!-- =========================================
+             DIYAS
+        ========================================== -->
+
+        <img
+            id="leftDiya"
+            class="diya"
+            src="./diya-left.png"
+            alt=""
+        >
+
+        <img
+            id="rightDiya"
+            class="diya"
+            src="./diya-right.png"
+            alt=""
+        >
+
+
+        <!-- =========================================
+             STAGE TITLE
+        ========================================== -->
+
         <div id="stageText"></div>
 
 
-        <!-- Final blessing -->
-        <section id="finalMessage">
+        <!-- =========================================
+             FINAL WISH
+        ========================================== -->
 
-            <div class="messageContent">
+        <section id="finalWish">
 
-                <div class="sanskrit">
-                    ॐ श्री गणेशाय नमः
-                </div>
-
-                <h1>
-                    Happy Ganesh Chaturthi
-                </h1>
-
-                <h2>
-                    వినాయక చవితి శుభాకాంక్షలు
-                </h2>
-
-                <p>
-                    May Lord Ganesha remove all obstacles
-                    and fill your life with happiness,
-                    wisdom and success.
-                </p>
-
-                <div class="blessing">
-                    🌺 A Divine Blessing 🌺
-                </div>
-
-                <div class="always">
-                    Always with You...
-                </div>
-
+            <div class="wishOm">
+                ॐ
             </div>
+
+            <h1>
+                Happy Ganesh Chaturthi
+            </h1>
+
+            <h2>
+                వినాయక చవితి శుభాకాంక్షలు
+            </h2>
+
+            <p>
+                May Lord Ganesha remove all obstacles
+                and fill your life with happiness,
+                wisdom and success.
+            </p>
+
+            <div class="wishLine">
+                ✦ 🙏 ✦
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             FINAL BLESSING
+        ========================================== -->
+
+        <section id="finalBlessing">
+
+            <div>
+                || श्री गणेशाय नमः ||
+            </div>
+
+            <h1>
+                A Divine Blessing
+            </h1>
+
+            <p>
+                Always with You...
+            </p>
 
         </section>
 
@@ -128,5 +247,4 @@
     <script src="script.js"></script>
 
 </body>
-
 </html>
