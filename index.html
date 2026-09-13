@@ -1,1 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
 
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Ganesh Chaturthi 2026 | Divine 3D Experience</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Three.js import map -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"
+        }
+    }
+    </script>
+</head>
+
+<body>
+
+    <!-- 3D Ganesh Experience -->
+    <main id="experience">
+
+        <!-- Three.js canvas will appear here -->
+        <canvas id="ganeshCanvas"></canvas>
+
+        <!-- Opening message -->
+        <section id="intro" class="screen">
+
+            <p class="sanskrit">ॐ श्री गणेशाय नमः</p>
+
+            <h1>
+                A Divine Blessing
+            </h1>
+
+            <p class="subtitle">
+                Experience the arrival of Lord Ganesha
+            </p>
+
+            <button id="startButton">
+                ✨ Begin Divine Experience
+            </button>
+
+        </section>
+
+        <!-- Step information -->
+        <section id="stepInfo" class="step-info hidden">
+
+            <p id="stepNumber">
+                STEP 1
+            </p>
+
+            <h2 id="stepTitle">
+                Divine Light
+            </h2>
+
+            <p id="stepDescription">
+                A divine light begins to appear...
+            </p>
+
+        </section>
+
+        <!-- Next button -->
+        <button id="nextButton" class="next-button hidden">
+            Next ✨
+        </button>
+
+        <!-- Final wishes -->
+        <section id="wishes" class="screen hidden">
+
+            <p class="sanskrit">
+                ॐ श्री गणेशाय नमः
+            </p>
+
+            <h1>
+                Happy Ganesh Chaturthi
+            </h1>
+
+            <h2>
+                వినాయక చవితి శుభాకాంక్షలు 🙏
+            </h2>
+
+            <p>
+                May Lord Ganesha remove every obstacle
+                and fill your life with happiness,
+                success and prosperity.
+            </p>
+
+            <div class="final-blessing">
+                🌺 शुभ गणेश चतुर्थी 🌺
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- JavaScript -->
+    <script type="module" src="script.js"></script>
+
+</body>
+</html>
