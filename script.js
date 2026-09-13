@@ -1,854 +1,238 @@
-import * as THREE from "three";
-
-import { GLTFLoader } from
-    "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/loaders/GLTFLoader.js";
-
-
 // =====================================================
-// ELEMENTS
+// GANESH CHATURTHI 2026
+// CINEMATIC SINGLE-IMAGE EXPERIENCE
 // =====================================================
 
-const canvas =
-    document.getElementById("ganeshCanvas");
+const scene =
+    document.getElementById("scene");
+
+const divineLight =
+    document.getElementById("divineLight");
+
+const energyRing =
+    document.getElementById("energyRing");
+
+const particles =
+    document.getElementById("particles");
+
+const ganesha =
+    document.getElementById("ganeshaReveal");
+
+const image =
+    document.getElementById("ganeshaImage");
+
+const aura =
+    document.getElementById("aura");
+
+const stageText =
+    document.getElementById("stageText");
 
 const finalMessage =
     document.getElementById("finalMessage");
 
-const cinematicGlow =
-    document.getElementById("cinematicGlow");
-
-const sceneTime =
-    document.getElementById("sceneTime");
-
 
 // =====================================================
-// SCENE
+// TIMING
 // =====================================================
 
-const scene =
-    new THREE.Scene();
-
-scene.background =
-    new THREE.Color(0x000000);
-
-
-// =====================================================
-// CAMERA
-// =====================================================
-
-const camera =
-    new THREE.PerspectiveCamera(
-        38,
-        window.innerWidth /
-        window.innerHeight,
-        0.1,
-        100
-    );
-
-camera.position.set(
-    0,
-    0.8,
-    8
-);
-
-
-// =====================================================
-// RENDERER
-// =====================================================
-
-const renderer =
-    new THREE.WebGLRenderer({
-        canvas,
-        antialias: true,
-        alpha: false
-    });
-
-renderer.setPixelRatio(
-    Math.min(
-        window.devicePixelRatio,
-        2
-    )
-);
-
-renderer.setSize(
-    window.innerWidth,
-    window.innerHeight
-);
-
-renderer.outputColorSpace =
-    THREE.SRGBColorSpace;
-
-renderer.toneMapping =
-    THREE.ACESFilmicToneMapping;
-
-renderer.toneMappingExposure =
-    1.15;
-
-
-// =====================================================
-// LIGHTING
-// =====================================================
-
-const ambient =
-    new THREE.HemisphereLight(
-        0xffd6a0,
-        0x140500,
-        0.30
-    );
-
-scene.add(ambient);
-
-
-const mainLight =
-    new THREE.PointLight(
-        0xffb52f,
-        0,
-        18
-    );
-
-mainLight.position.set(
-    0,
-    2,
-    3
-);
-
-scene.add(mainLight);
-
-
-const warmLight =
-    new THREE.PointLight(
-        0xff6825,
-        0,
-        12
-    );
-
-warmLight.position.set(
-    -3,
-    1,
-    2
-);
-
-scene.add(warmLight);
-
-
-const rimLight =
-    new THREE.PointLight(
-        0xffd36a,
-        0,
-        15
-    );
-
-rimLight.position.set(
-    3,
-    2,
-    -2
-);
-
-scene.add(rimLight);
-
-
-// =====================================================
-// DIVINE LIGHT
-// =====================================================
-
-const divineGroup =
-    new THREE.Group();
-
-scene.add(divineGroup);
-
-
-const divineLight =
-    new THREE.Mesh(
-        new THREE.SphereGeometry(
-            0.18,
-            32,
-            32
-        ),
-        new THREE.MeshBasicMaterial({
-            color: 0xffd477,
-            transparent: true,
-            opacity: 0
-        })
-    );
-
-divineGroup.add(
-    divineLight
-);
-
-
-const divinePoint =
-    new THREE.PointLight(
-        0xffb52f,
-        0,
-        14
-    );
-
-divineGroup.add(
-    divinePoint
-);
-
-
-// =====================================================
-// PARTICLES
-// =====================================================
-
-const particleCount = 600;
-
-const particleGeometry =
-    new THREE.BufferGeometry();
-
-const particlePositions =
-    new Float32Array(
-        particleCount * 3
-    );
-
-for (
-    let i = 0;
-    i < particleCount;
-    i++
-) {
-
-    const angle =
-        Math.random() *
-        Math.PI * 2;
-
-    const radius =
-        0.5 +
-        Math.random() * 3.5;
-
-    particlePositions[
-        i * 3
-    ] =
-        Math.cos(angle) *
-        radius;
-
-    particlePositions[
-        i * 3 + 1
-    ] =
-        -1 +
-        Math.random() * 4;
-
-    particlePositions[
-        i * 3 + 2
-    ] =
-        -1 +
-        Math.random() * 2;
-}
-
-particleGeometry.setAttribute(
-    "position",
-    new THREE.BufferAttribute(
-        particlePositions,
-        3
-    )
-);
-
-
-const particleMaterial =
-    new THREE.PointsMaterial({
-        color: 0xffcf69,
-        size: 0.025,
-        transparent: true,
-        opacity: 0
-    });
-
-
-const particles =
-    new THREE.Points(
-        particleGeometry,
-        particleMaterial
-    );
-
-scene.add(
-    particles
-);
-
-
-// =====================================================
-// DIVINE RING
-// =====================================================
-
-const divineRing =
-    new THREE.Mesh(
-        new THREE.RingGeometry(
-            0.5,
-            0.54,
-            128
-        ),
-        new THREE.MeshBasicMaterial({
-            color: 0xffc15b,
-            transparent: true,
-            opacity: 0,
-            side: THREE.DoubleSide
-        })
-    );
-
-divineRing.rotation.x =
-    -Math.PI / 2;
-
-divineRing.position.y =
-    -1.25;
-
-scene.add(
-    divineRing
-);
-
-
-// =====================================================
-// LOTUS
-// =====================================================
-
-const lotus =
-    new THREE.Group();
-
-lotus.position.set(
-    0,
-    -1.05,
-    0
-);
-
-lotus.scale.setScalar(
-    0.001
-);
-
-scene.add(
-    lotus
-);
-
-
-const lotusPetals = [];
-
-
-function makePetal(
-    angle,
-    scaleX,
-    scaleY,
-    scaleZ
-) {
-
-    const material =
-        new THREE.MeshPhysicalMaterial({
-            color: 0xe85d83,
-            roughness: 0.25,
-            metalness: 0.04,
-            clearcoat: 0.65,
-            emissive: 0x541326,
-            emissiveIntensity: 0.45,
-            transparent: true,
-            opacity: 0
-        });
-
-
-    const petal =
-        new THREE.Mesh(
-            new THREE.SphereGeometry(
-                0.5,
-                32,
-                20
-            ),
-            material
-        );
-
-
-    petal.scale.set(
-        scaleX,
-        scaleY,
-        scaleZ
-    );
-
-
-    petal.rotation.y =
-        angle;
-
-    petal.rotation.x =
-        -1.15;
-
-
-    petal.position.x =
-        Math.sin(angle) * 0.48;
-
-    petal.position.z =
-        Math.cos(angle) * 0.24;
-
-    petal.position.y =
-        0.04;
-
-
-    lotus.add(
-        petal
-    );
-
-    lotusPetals.push(
-        petal
-    );
-}
-
-
-// Back petals
-for (
-    let i = 0;
-    i < 10;
-    i++
-) {
-
-    makePetal(
-        (i / 10) *
-        Math.PI * 2,
-        0.28,
-        0.72,
-        0.18
-    );
-}
-
-
-// Front petals
-for (
-    let i = 0;
-    i < 8;
-    i++
-) {
-
-    makePetal(
-        (i / 8) *
-        Math.PI * 2,
-        0.34,
-        0.82,
-        0.20
-    );
-}
-
-
-// Lotus center
-const lotusCenter =
-    new THREE.Mesh(
-        new THREE.SphereGeometry(
-            0.25,
-            32,
-            24
-        ),
-        new THREE.MeshPhysicalMaterial({
-            color: 0xffa1b8,
-            roughness: 0.22,
-            emissive: 0x70203c,
-            emissiveIntensity: 0.7
-        })
-    );
-
-lotusCenter.position.y =
-    0.12;
-
-lotus.add(
-    lotusCenter
-);
-
-
-// =====================================================
-// GOLDEN SEAT
-// =====================================================
-
-const seat =
-    new THREE.Group();
-
-seat.scale.setScalar(
-    0.001
-);
-
-scene.add(
-    seat
-);
-
-
-const seatMaterial =
-    new THREE.MeshPhysicalMaterial({
-        color: 0xc77a22,
-        metalness: 0.75,
-        roughness: 0.22,
-        clearcoat: 0.7
-    });
-
-
-const seatBody =
-    new THREE.Mesh(
-        new THREE.CylinderGeometry(
-            1.45,
-            1.55,
-            0.28,
-            64
-        ),
-        seatMaterial
-    );
-
-seatBody.position.y =
-    -0.96;
-
-seat.add(
-    seatBody
-);
-
-
-const seatTop =
-    new THREE.Mesh(
-        new THREE.CylinderGeometry(
-            1.25,
-            1.35,
-            0.16,
-            64
-        ),
-        new THREE.MeshPhysicalMaterial({
-            color: 0xffb833,
-            metalness: 0.82,
-            roughness: 0.17
-        })
-    );
-
-seatTop.position.y =
-    -0.76;
-
-seat.add(
-    seatTop
-);
-
-
-// =====================================================
-// GANESHA GLB
-// =====================================================
-
-let ganesha =
-    null;
-
-let mixer =
-    null;
-
-
-const loader =
-    new GLTFLoader();
-
-
-loader.load(
-
-    "assets/ganesha.glb",
-
-    (gltf) => {
-
-        ganesha =
-            gltf.scene;
-
-
-        // ---------------------------------------------
-        // Normalize model size
-        // ---------------------------------------------
-
-        const box =
-            new THREE.Box3()
-                .setFromObject(
-                    ganesha
-                );
-
-        const size =
-            new THREE.Vector3();
-
-        box.getSize(
-            size
-        );
-
-        const maxDimension =
-            Math.max(
-                size.x,
-                size.y,
-                size.z
-            );
-
-
-        const targetSize =
-            4.2;
-
-
-        const modelScale =
-            targetSize /
-            maxDimension;
-
-
-        ganesha.scale.setScalar(
-            modelScale
-        );
-
-
-        // Center model
-        const center =
-            new THREE.Vector3();
-
-        box.getCenter(
-            center
-        );
-
-
-        ganesha.position.sub(
-            center.multiplyScalar(
-                modelScale
-            )
-        );
-
-
-        ganesha.position.y =
-            -0.40;
-
-
-        // ---------------------------------------------
-        // Start invisible
-        // ---------------------------------------------
-
-        ganesha.traverse(
-            object => {
-
-                if (
-                    object.isMesh ||
-                    object.isSkinnedMesh
-                ) {
-
-                    object.userData.finalScale =
-                        object.scale.clone();
-
-                    object.userData.finalPosition =
-                        object.position.clone();
-
-                    object.userData.finalRotation =
-                        object.rotation.clone();
-
-
-                    object.scale.setScalar(
-                        0.001
-                    );
-                }
-            }
-        );
-
-
-        scene.add(
-            ganesha
-        );
-
-
-        // ---------------------------------------------
-        // Existing model animations
-        // ---------------------------------------------
-
-        if (
-            gltf.animations &&
-            gltf.animations.length > 0
-        ) {
-
-            mixer =
-                new THREE.AnimationMixer(
-                    ganesha
-                );
-
-            gltf.animations.forEach(
-                clip => {
-
-                    const action =
-                        mixer.clipAction(
-                            clip
-                        );
-
-                    action.play();
-
-                    action.paused =
-                        true;
-                }
-            );
-        }
-
+const stages = [
+
+    {
+        start: 0,
+        end: 2,
+        name: ""
     },
 
-    undefined,
+    {
+        start: 2,
+        end: 4,
+        name: "A Divine Light"
+    },
 
-    error => {
+    {
+        start: 4,
+        end: 6,
+        name: "Divine Energy"
+    },
 
-        console.warn(
-            "Place ganesha.glb inside assets folder.",
-            error
-        );
+    {
+        start: 6,
+        end: 8,
+        name: "Lotus Awakens"
+    },
 
+    {
+        start: 8,
+        end: 10,
+        name: "Lotus Petals Open"
+    },
+
+    {
+        start: 10,
+        end: 12,
+        name: "Sacred Lotus"
+    },
+
+    {
+        start: 12,
+        end: 14,
+        name: "Divine Seat"
+    },
+
+    {
+        start: 14,
+        end: 16,
+        name: "Golden Crown"
+    },
+
+    {
+        start: 16,
+        end: 18,
+        name: "Divine Eyes"
+    },
+
+    {
+        start: 18,
+        end: 20,
+        name: "Sacred Ears"
+    },
+
+    {
+        start: 20,
+        end: 22,
+        name: "Sacred Trunk"
+    },
+
+    {
+        start: 22,
+        end: 24,
+        name: "Divine Face"
+    },
+
+    {
+        start: 24,
+        end: 26,
+        name: "Blessing Hands"
+    },
+
+    {
+        start: 26,
+        end: 28,
+        name: "Sacred Ornaments"
+    },
+
+    {
+        start: 28,
+        end: 30,
+        name: "Complete Ganesha"
+    },
+
+    {
+        start: 30,
+        end: 32,
+        name: "Divine Glow"
+    },
+
+    {
+        start: 32,
+        end: 34,
+        name: "Final Darshan"
+    },
+
+    {
+        start: 34,
+        end: 36,
+        name: "Blessings"
     }
-);
+
+];
 
 
 // =====================================================
-// HELPER
+// HELPERS
 // =====================================================
 
-function smooth(value) {
+function clamp(
+    value,
+    min,
+    max
+) {
 
-    return THREE.MathUtils.smoothstep(
-        THREE.MathUtils.clamp(
+    return Math.min(
+        Math.max(
+            value,
+            min
+        ),
+        max
+    );
+}
+
+
+function smooth(
+    value
+) {
+
+    value =
+        clamp(
             value,
             0,
             1
-        ),
-        0,
-        1
-    );
+        );
+
+    return value *
+        value *
+        (3 - 2 * value);
 }
 
 
-// =====================================================
-// SHOW ENTIRE GANESHA
-// =====================================================
-
-function showGanesha(
-    progress
+function progress(
+    time,
+    start,
+    end
 ) {
 
-    if (!ganesha)
-        return;
-
-
-    const p =
-        smooth(progress);
-
-
-    ganesha.traverse(
-        object => {
-
-            if (
-                object.isMesh ||
-                object.isSkinnedMesh
-            ) {
-
-                if (
-                    object.userData.finalScale
-                ) {
-
-                    object.scale.copy(
-                        object.userData.finalScale
-                    );
-
-                    object.scale.multiplyScalar(
-                        Math.max(
-                            p,
-                            0.001
-                        )
-                    );
-                }
-            }
-        }
+    return smooth(
+        (time - start) /
+        (end - start)
     );
 }
 
 
 // =====================================================
-// PARTIAL MODEL REVEAL
+// MAIN TIMELINE
 // =====================================================
 
-function revealNamedParts(
-    names,
-    progress
-) {
-
-    if (!ganesha)
-        return;
-
-
-    const p =
-        smooth(progress);
-
-
-    ganesha.traverse(
-        object => {
-
-            if (
-                !object.isMesh &&
-                !object.isSkinnedMesh
-            )
-                return;
-
-
-            const objectName =
-                (
-                    object.name ||
-                    ""
-                ).toLowerCase();
-
-
-            const matched =
-                names.some(
-                    name =>
-                        objectName.includes(
-                            name
-                        )
-                );
-
-
-            if (
-                matched &&
-                object.userData.finalScale
-            ) {
-
-                object.scale.copy(
-                    object.userData.finalScale
-                );
-
-                object.scale.multiplyScalar(
-                    Math.max(
-                        p,
-                        0.001
-                    )
-                );
-            }
-        }
-    );
-}
-
-
-// =====================================================
-// TIMELINE
-// =====================================================
-
-function timeline(
+function update(
     time
 ) {
 
-    // ================================================
-    // 0–2 DARK
-    // ================================================
+    // -----------------------------------------------
+    // RESET COMMON STATES
+    // -----------------------------------------------
+
+    stageText.style.opacity = "0";
+
+
+    // -----------------------------------------------
+    // 0–2s
+    // DARK SCREEN
+    // -----------------------------------------------
 
     if (time < 2) {
 
-        divineLight.material.opacity =
-            0;
+        divineLight.style.opacity =
+            "0";
 
-        divinePoint.intensity =
-            0;
+        energyRing.style.opacity =
+            "0";
 
-        particleMaterial.opacity =
-            0;
+        particles.style.opacity =
+            "0";
 
-        divineRing.material.opacity =
-            0;
+        ganesha.style.opacity =
+            "0";
 
-        lotus.scale.setScalar(
-            0.001
-        );
-
-        seat.scale.setScalar(
-            0.001
-        );
-
-        if (ganesha)
-            ganesha.visible = true;
-
-        showGanesha(0);
-
-        mainLight.intensity =
-            0;
-
-        warmLight.intensity =
-            0;
-
-        rimLight.intensity =
-            0;
-
-        cinematicGlow.style.opacity =
+        aura.style.opacity =
             "0";
 
         finalMessage.classList.remove(
@@ -859,463 +243,659 @@ function timeline(
     }
 
 
-    // ================================================
-    // 2–4 DIVINE LIGHT
-    // ================================================
+    // -----------------------------------------------
+    // 2–4s
+    // SINGLE DIVINE LIGHT
+    // -----------------------------------------------
 
     if (time < 4) {
 
         const p =
-            smooth(
-                (time - 2) / 2
+            progress(
+                time,
+                2,
+                4
             );
 
 
-        divineLight.material.opacity =
-            p;
-
-        divineLight.scale.setScalar(
-            0.5 + p * 1.8
-        );
+        divineLight.style.opacity =
+            String(p);
 
 
-        divinePoint.intensity =
-            p * 7;
+        divineLight.style.transform =
+            `
+            translate(-50%, -50%)
+            scale(${0.2 + p * 2})
+            `;
 
 
-        mainLight.intensity =
-            p * 1.2;
+        stageText.textContent =
+            "A Divine Light";
 
+        stageText.style.opacity =
+            String(p);
 
-        divineRing.material.opacity =
-            p * 0.5;
-
-
-        divineRing.scale.setScalar(
-            0.5 + p * 1.5
-        );
-
-
-        cinematicGlow.style.opacity =
-            String(
-                p * 0.7
-            );
 
         return;
     }
 
 
-    // ================================================
-    // 4–6 PARTICLES
-    // ================================================
+    // -----------------------------------------------
+    // 4–6s
+    // LIGHT + PARTICLES
+    // -----------------------------------------------
 
     if (time < 6) {
 
         const p =
-            smooth(
-                (time - 4) / 2
+            progress(
+                time,
+                4,
+                6
             );
 
 
-        divineLight.material.opacity =
-            0.85;
+        divineLight.style.opacity =
+            "1";
 
 
-        divinePoint.intensity =
-            7;
+        divineLight.style.transform =
+            `
+            translate(-50%, -50%)
+            scale(${2 + p * 1.5})
+            `;
 
 
-        particleMaterial.opacity =
-            p * 0.9;
+        energyRing.style.opacity =
+            String(p);
 
 
-        divineRing.material.opacity =
-            0.5;
+        energyRing.style.transform =
+            `
+            translate(-50%, -50%)
+            scale(${0.1 + p * 7})
+            `;
 
 
-        particles.rotation.y +=
-            0.003;
+        particles.style.opacity =
+            String(p * 0.9);
 
 
-        particles.rotation.z +=
-            0.001;
+        stageText.textContent =
+            "Divine Energy";
 
+        stageText.style.opacity =
+            "1";
 
-        cinematicGlow.style.opacity =
-            "0.8";
 
         return;
     }
 
 
-    // ================================================
-    // 6–8 LOTUS CENTER
-    // ================================================
+    // -----------------------------------------------
+    // 6–8s
+    // LOTUS CENTER
+    // -----------------------------------------------
 
     if (time < 8) {
 
         const p =
-            smooth(
-                (time - 6) / 2
+            progress(
+                time,
+                6,
+                8
             );
 
 
-        lotus.scale.setScalar(
-            p
-        );
+        divineLight.style.opacity =
+            "0.8";
 
 
-        lotusPetals.forEach(
-            petal => {
-
-                petal.material.opacity =
-                    p * 0.35;
-
-            }
-        );
+        particles.style.opacity =
+            "0.9";
 
 
-        mainLight.intensity =
-            8;
+        energyRing.style.opacity =
+            "0.8";
 
-        particleMaterial.opacity =
-            0.9;
+
+        /*
+         * The complete image begins very subtly
+         * from the lower center.
+         */
+
+        ganesha.style.opacity =
+            String(
+                p * 0.18
+            );
+
+
+        ganesha.style.transform =
+            `
+            translate(-50%, -48%)
+            scale(${1.12 - p * 0.10})
+            `;
+
+
+        stageText.textContent =
+            "Lotus Awakens";
+
+        stageText.style.opacity =
+            "1";
+
 
         return;
     }
 
 
-    // ================================================
-    // 8–10 LOTUS OPENS
-    // ================================================
+    // -----------------------------------------------
+    // 8–10s
+    // LOTUS PETALS OPEN
+    // -----------------------------------------------
 
     if (time < 10) {
 
         const p =
-            smooth(
-                (time - 8) / 2
+            progress(
+                time,
+                8,
+                10
             );
 
 
-        lotus.scale.setScalar(
-            1
-        );
+        ganesha.style.opacity =
+            String(
+                0.18 +
+                p * 0.18
+            );
 
 
-        lotusPetals.forEach(
-            (petal, index) => {
-
-                const local =
-                    smooth(
-                        p * 1.3 -
-                        index * 0.035
-                    );
+        ganesha.style.transform =
+            `
+            translate(-50%, -48%)
+            scale(${1.02 - p * 0.02})
+            `;
 
 
-                petal.material.opacity =
-                    local;
+        aura.style.opacity =
+            String(
+                p * 0.25
+            );
 
 
-                petal.rotation.x =
-                    -1.15 +
-                    local * 1.15;
+        stageText.textContent =
+            "Lotus Petals Open";
 
-            }
-        );
+        stageText.style.opacity =
+            "1";
 
 
         return;
     }
 
 
-    // ================================================
-    // 10–12 FULL LOTUS
-    // ================================================
+    // -----------------------------------------------
+    // 10–12s
+    // FULL LOTUS
+    // -----------------------------------------------
 
     if (time < 12) {
 
         const p =
-            smooth(
-                (time - 10) / 2
+            progress(
+                time,
+                10,
+                12
             );
 
 
-        lotusPetals.forEach(
-            petal => {
+        ganesha.style.opacity =
+            String(
+                0.36 +
+                p * 0.16
+            );
 
-                petal.material.opacity =
-                    1;
 
-                petal.rotation.x =
-                    -1.15 +
-                    p * 0.15;
-            }
-        );
+        aura.style.opacity =
+            String(
+                0.25 +
+                p * 0.15
+            );
+
+
+        stageText.textContent =
+            "Sacred Lotus";
+
+        stageText.style.opacity =
+            "1";
 
 
         return;
     }
 
 
-    // ================================================
-    // 12–14 BASE / SEAT
-    // ================================================
+    // -----------------------------------------------
+    // 12–14s
+    // BASE / SEAT
+    // -----------------------------------------------
 
     if (time < 14) {
 
         const p =
-            smooth(
-                (time - 12) / 2
+            progress(
+                time,
+                12,
+                14
             );
 
 
-        seat.scale.setScalar(
-            p
-        );
+        ganesha.style.opacity =
+            String(
+                0.52 +
+                p * 0.12
+            );
+
+
+        ganesha.style.transform =
+            `
+            translate(-50%, -48%)
+            scale(${1 - p * 0.01})
+            `;
+
+
+        stageText.textContent =
+            "Divine Seat";
+
+        stageText.style.opacity =
+            "1";
 
 
         return;
     }
 
 
-    // ================================================
-    // 14–16 CROWN
-    // ================================================
+    // -----------------------------------------------
+    // 14–16
+    // CROWN
+    // -----------------------------------------------
 
     if (time < 16) {
 
-        revealNamedParts(
-            [
-                "crown",
-                "mukut",
-                "headgear",
-                "tiara"
-            ],
-            (time - 14) / 2
-        );
+        const p =
+            progress(
+                time,
+                14,
+                16
+            );
+
+
+        ganesha.style.opacity =
+            String(
+                0.64 +
+                p * 0.08
+            );
+
+
+        aura.style.opacity =
+            String(
+                0.40 +
+                p * 0.12
+            );
+
+
+        stageText.textContent =
+            "Golden Crown";
+
+        stageText.style.opacity =
+            "1";
 
 
         return;
     }
 
 
-    // ================================================
-    // 16–18 EYES
-    // ================================================
+    // -----------------------------------------------
+    // 16–18
+    // EYES
+    // -----------------------------------------------
 
     if (time < 18) {
 
-        revealNamedParts(
-            [
-                "eye",
-                "eyes"
-            ],
-            (time - 16) / 2
-        );
+        const p =
+            progress(
+                time,
+                16,
+                18
+            );
+
+
+        ganesha.style.opacity =
+            String(
+                0.72 +
+                p * 0.08
+            );
+
+
+        stageText.textContent =
+            "Divine Eyes";
+
+        stageText.style.opacity =
+            "1";
 
 
         return;
     }
 
 
-    // ================================================
-    // 18–20 EARS
-    // ================================================
+    // -----------------------------------------------
+    // 18–20
+    // EARS
+    // -----------------------------------------------
 
     if (time < 20) {
 
-        revealNamedParts(
-            [
-                "ear",
-                "ears"
-            ],
-            (time - 18) / 2
-        );
+        const p =
+            progress(
+                time,
+                18,
+                20
+            );
+
+
+        ganesha.style.opacity =
+            String(
+                0.80 +
+                p * 0.05
+            );
+
+
+        stageText.textContent =
+            "Sacred Ears";
+
+        stageText.style.opacity =
+            "1";
 
 
         return;
     }
 
 
-    // ================================================
-    // 20–22 TRUNK
-    // ================================================
+    // -----------------------------------------------
+    // 20–22
+    // TRUNK
+    // -----------------------------------------------
 
     if (time < 22) {
 
-        revealNamedParts(
-            [
-                "trunk"
-            ],
-            (time - 20) / 2
-        );
+        const p =
+            progress(
+                time,
+                20,
+                22
+            );
+
+
+        ganesha.style.opacity =
+            String(
+                0.85 +
+                p * 0.05
+            );
+
+
+        ganesha.style.transform =
+            `
+            translate(-50%, -48%)
+            scale(${1 + p * 0.015})
+            `;
+
+
+        stageText.textContent =
+            "Sacred Trunk";
+
+        stageText.style.opacity =
+            "1";
 
 
         return;
     }
 
 
-    // ================================================
-    // 22–24 FACE
-    // ================================================
+    // -----------------------------------------------
+    // 22–24
+    // FACE
+    // -----------------------------------------------
 
     if (time < 24) {
 
-        revealNamedParts(
-            [
-                "face",
-                "head"
-            ],
-            (time - 22) / 2
-        );
+        const p =
+            progress(
+                time,
+                22,
+                24
+            );
+
+
+        ganesha.style.opacity =
+            String(
+                0.90 +
+                p * 0.06
+            );
+
+
+        stageText.textContent =
+            "Divine Face";
+
+        stageText.style.opacity =
+            "1";
 
 
         return;
     }
 
 
-    // ================================================
-    // 24–26 HANDS
-    // ================================================
+    // -----------------------------------------------
+    // 24–26
+    // HANDS
+    // -----------------------------------------------
 
     if (time < 26) {
 
-        revealNamedParts(
-            [
-                "hand",
-                "arm",
-                "palm"
-            ],
-            (time - 24) / 2
-        );
+        const p =
+            progress(
+                time,
+                24,
+                26
+            );
+
+
+        ganesha.style.opacity =
+            String(
+                0.96 +
+                p * 0.04
+            );
+
+
+        aura.style.opacity =
+            String(
+                0.55 +
+                p * 0.10
+            );
+
+
+        stageText.textContent =
+            "Blessing Hands";
+
+        stageText.style.opacity =
+            "1";
 
 
         return;
     }
 
 
-    // ================================================
-    // 26–28 ORNAMENTS / CLOTHES
-    // ================================================
+    // -----------------------------------------------
+    // 26–28
+    // ORNAMENTS / CLOTHING
+    // -----------------------------------------------
 
     if (time < 28) {
 
-        revealNamedParts(
-            [
-                "jewel",
-                "ornament",
-                "necklace",
-                "garland",
-                "cloth",
-                "dhoti",
-                "dress"
-            ],
-            (time - 26) / 2
-        );
+        const p =
+            progress(
+                time,
+                26,
+                28
+            );
+
+
+        ganesha.style.opacity =
+            "1";
+
+
+        aura.style.opacity =
+            String(
+                0.65 +
+                p * 0.15
+            );
+
+
+        stageText.textContent =
+            "Sacred Ornaments";
+
+        stageText.style.opacity =
+            "1";
 
 
         return;
     }
 
 
-    // ================================================
-    // 28–30 COMPLETE GANESHA
-    // ================================================
+    // -----------------------------------------------
+    // 28–30
+    // COMPLETE GANESHA
+    // -----------------------------------------------
 
     if (time < 30) {
 
-        showGanesha(
-            (time - 28) / 2
-        );
+        const p =
+            progress(
+                time,
+                28,
+                30
+            );
 
 
-        mainLight.intensity =
-            10;
-
-        warmLight.intensity =
-            4;
-
-        rimLight.intensity =
-            3;
-
-        cinematicGlow.style.opacity =
+        ganesha.style.opacity =
             "1";
+
+
+        ganesha.style.transform =
+            `
+            translate(-50%, -48%)
+            scale(${1 + p * 0.025})
+            `;
+
+
+        aura.style.opacity =
+            String(
+                0.80 +
+                p * 0.15
+            );
+
+
+        particles.style.opacity =
+            "1";
+
+
+        stageText.textContent =
+            "Complete Ganesha";
+
+        stageText.style.opacity =
+            "1";
+
 
         return;
     }
 
 
-    // ================================================
-    // 30–32 GLOW + CAMERA ZOOM
-    // ================================================
+    // -----------------------------------------------
+    // 30–32
+    // DIVINE GLOW + CAMERA-LIKE ZOOM
+    // -----------------------------------------------
 
     if (time < 32) {
 
         const p =
-            smooth(
-                (time - 30) / 2
+            progress(
+                time,
+                30,
+                32
             );
 
 
-        showGanesha(1);
+        ganesha.style.transform =
+            `
+            translate(-50%, -48%)
+            scale(${1.025 + p * 0.13})
+            `;
 
 
-        camera.position.z =
-            8 -
-            p * 1.6;
-
-
-        camera.position.y =
-            0.8 +
-            p * 0.15;
-
-
-        mainLight.intensity =
-            10 +
-            p * 5;
-
-
-        warmLight.intensity =
-            4 +
-            p * 3;
-
-
-        rimLight.intensity =
-            3 +
-            p * 2;
-
-
-        cinematicGlow.style.opacity =
+        aura.style.opacity =
             "1";
+
+
+        divineLight.style.opacity =
+            String(
+                0.55 +
+                p * 0.25
+            );
+
+
+        particles.style.opacity =
+            "1";
+
+
+        stageText.textContent =
+            "Divine Darshan";
+
+        stageText.style.opacity =
+            "1";
+
 
         return;
     }
 
 
-    // ================================================
-    // 32–34 FINAL DARSHAN
-    // ================================================
+    // -----------------------------------------------
+    // 32–34
+    // FINAL DARSHAN
+    // -----------------------------------------------
 
     if (time < 34) {
 
-        showGanesha(1);
+        ganesha.style.opacity =
+            "1";
 
 
-        camera.position.z =
-            6.4;
+        ganesha.style.transform =
+            `
+            translate(-50%, -48%)
+            scale(1.155)
+            `;
 
 
-        mainLight.intensity =
-            12;
-
-        warmLight.intensity =
-            7;
-
-        rimLight.intensity =
-            5;
+        aura.style.opacity =
+            "1";
 
 
-        cinematicGlow.style.opacity =
+        particles.style.opacity =
+            "1";
+
+
+        stageText.textContent =
+            "Final Darshan";
+
+        stageText.style.opacity =
             "1";
 
 
@@ -1323,140 +903,151 @@ function timeline(
     }
 
 
-    // ================================================
-    // 34–36 BLESSING
-    // ================================================
+    // -----------------------------------------------
+    // 34–36
+    // BLESSING MESSAGE
+    // -----------------------------------------------
 
     if (time < 36) {
 
-        showGanesha(1);
+        const p =
+            progress(
+                time,
+                34,
+                36
+            );
 
 
-        finalMessage.classList.add(
-            "show"
-        );
+        ganesha.style.opacity =
+            "1";
 
 
-        mainLight.intensity =
-            11;
+        ganesha.style.transform =
+            `
+            translate(-50%, -48%)
+            scale(1.155)
+            `;
 
 
-        warmLight.intensity =
-            6;
+        finalMessage.style.opacity =
+            String(p);
+
+        finalMessage.style.visibility =
+            "visible";
 
 
-        rimLight.intensity =
-            5;
+        stageText.style.opacity =
+            "0";
 
 
         return;
     }
 
 
-    // ================================================
-    // 36+ CONTINUOUS DARSHAN
-    // ================================================
-
-    showGanesha(1);
-
+    // -----------------------------------------------
+    // 36+
+    // CONTINUOUS DARSHAN
+    // -----------------------------------------------
 
     finalMessage.classList.add(
         "show"
     );
 
 
-    camera.position.z =
-        6.4;
+    ganesha.style.opacity =
+        "1";
 
 
-    camera.position.x =
+    const gentleZoom =
+        1.155 +
         Math.sin(
-            time * 0.18
-        ) * 0.08;
+            time * 0.35
+        ) * 0.015;
 
 
-    camera.position.y =
-        0.95 +
+    const gentleX =
         Math.sin(
-            time * 0.4
-        ) * 0.03;
+            time * 0.20
+        ) * 0.3;
 
 
-    mainLight.intensity =
-        11 +
-        Math.sin(
-            time * 1.4
-        ) * 1.5;
+    ganesha.style.transform =
+        `
+        translate(
+            calc(-50% + ${gentleX}px),
+            -48%
+        )
+        scale(${gentleZoom})
+        `;
 
 
-    warmLight.intensity =
-        6;
+    aura.style.opacity =
+        String(
+            0.88 +
+            Math.sin(
+                time * 1.2
+            ) * 0.08
+        );
 
 
-    rimLight.intensity =
-        5;
+    particles.style.opacity =
+        "1";
 
-
-    particles.rotation.y +=
-        0.0015;
-
-
-    lotus.rotation.y =
-        Math.sin(
-            time * 0.4
-        ) * 0.025;
 }
 
 
 // =====================================================
-// ANIMATION LOOP
+// RUN AUTOMATICALLY
 // =====================================================
 
-const clock =
-    new THREE.Clock();
+const startTime =
+    performance.now();
 
 
-function animate() {
-
-    requestAnimationFrame(
-        animate
-    );
-
+function animationLoop(
+    now
+) {
 
     const elapsed =
-        clock.getElapsedTime();
+        (now - startTime) /
+        1000;
 
 
-    timeline(
+    update(
         elapsed
     );
 
 
-    if (mixer) {
-
-        mixer.update(
-            clock.getDelta()
-        );
-
-    }
-
-
-    sceneTime.textContent =
-        new Date(
-            elapsed * 1000
-        )
-        .toISOString()
-        .substring(14, 19);
-
-
-    renderer.render(
-        scene,
-        camera
+    requestAnimationFrame(
+        animationLoop
     );
 }
 
 
-animate();
+requestAnimationFrame(
+    animationLoop
+);
+
+
+// =====================================================
+// IMAGE ERROR CHECK
+// =====================================================
+
+image.addEventListener(
+    "error",
+    () => {
+
+        console.error(
+            "ganesha.png was not found. Make sure the image is in the repository root."
+        );
+
+        stageText.textContent =
+            "Please add ganesha.png to the repository.";
+
+        stageText.style.opacity =
+            "1";
+    }
+);
 
 
 // =====================================================
@@ -1467,18 +1058,8 @@ window.addEventListener(
     "resize",
     () => {
 
-        camera.aspect =
-            window.innerWidth /
-            window.innerHeight;
-
-
-        camera.updateProjectionMatrix();
-
-
-        renderer.setSize(
-            window.innerWidth,
-            window.innerHeight
-        );
+        // CSS handles responsive sizing.
+        // This listener intentionally remains lightweight.
 
     }
 );
