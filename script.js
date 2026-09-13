@@ -7,6 +7,7 @@ const lotusOpening = document.getElementById("lotusOpening");
 const lotusFull = document.getElementById("lotusFull");
 const lotusSeat = document.getElementById("lotusSeat");
 
+const ganeshaStage = document.getElementById("ganeshaStage");
 const ganesha = document.getElementById("ganesha");
 
 const diyaLeft = document.getElementById("diyaLeft");
@@ -16,178 +17,248 @@ const wish = document.getElementById("wish");
 const blessing = document.getElementById("blessing");
 
 
-function reveal(element, animationClass = "scale-in") {
-    element.classList.add(animationClass);
+/* =========================================
+   HELPERS
+========================================= */
+
+function show(element, className) {
+    if (element) {
+        element.classList.add(className);
+    }
 }
 
 
-/*
-    EXACT STORYBOARD
-
-    0–2   Dark Screen
-    2–4   Divine Light
-    4–6   Light + Particles
-    6–8   Lotus Center
-    8–10  Lotus Opening
-    10–12 Lotus Full
-    12–14 Lotus + Seat
-    14–16 Crown stage
-    16–18 Eyes stage
-    18–20 Ears stage
-    20–22 Trunk stage
-    22–24 Face stage
-    24–26 Hands
-    26–28 Ornaments
-    28–30 Complete Ganesha
-    30–32 Divine Glow + Diyas
-    32–34 Final Darshan
-    34–36 Wishes
-    36+   Blessing
-*/
-
+/* =========================================
+   START SEQUENCE
+========================================= */
 
 function startSequence() {
 
-    // 0–2 seconds
-    setTimeout(() => {
-        // Remain completely black.
-    }, 0);
+    /*
+        0–2 SECONDS
+        Completely black.
+    */
 
 
-    // 2–4 seconds
+    /* -----------------------------------------
+       2–4 SECONDS
+       Divine light
+    ----------------------------------------- */
+
     setTimeout(() => {
-        reveal(divineLight);
+        show(divineLight, "show-light");
     }, 2000);
 
 
-    // 4–6 seconds
+    /* -----------------------------------------
+       4–6 SECONDS
+       Light expands + particles
+    ----------------------------------------- */
+
     setTimeout(() => {
-        reveal(lightExpand);
-        reveal(particles);
+        show(lightExpand, "show-expand");
+        show(particles, "show-particles");
     }, 4000);
 
 
-    // 6–8 seconds
+    /* -----------------------------------------
+       6–8 SECONDS
+       Lotus center
+    ----------------------------------------- */
+
     setTimeout(() => {
-        reveal(lotusCenter);
+        show(lotusCenter, "show-lotus");
     }, 6000);
 
 
-    // 8–10 seconds
+    /* -----------------------------------------
+       8–10 SECONDS
+       Lotus opening
+    ----------------------------------------- */
+
     setTimeout(() => {
-        reveal(lotusOpening);
+        show(lotusOpening, "show-lotus");
     }, 8000);
 
 
-    // 10–12 seconds
+    /* -----------------------------------------
+       10–12 SECONDS
+       Full lotus
+    ----------------------------------------- */
+
     setTimeout(() => {
-        reveal(lotusFull);
+        show(lotusFull, "show-lotus");
     }, 10000);
 
 
-    // 12–14 seconds
+    /* -----------------------------------------
+       12–14 SECONDS
+       Golden seat
+    ----------------------------------------- */
+
     setTimeout(() => {
-        reveal(lotusSeat);
+        show(lotusSeat, "show-lotus");
     }, 12000);
 
 
-    /*
-        14–28 seconds
+    /* =========================================
+       GANESHA REVEAL
+       14–30 SECONDS
 
-        IMPORTANT:
-        We are NOT stacking separate Ganesha body-part PNGs.
-        The final realistic Ganesha is one coherent image.
+       No drawing.
+       No separate body parts.
 
-        We reveal the same idol progressively using
-        brightness + scale timing.
-    */
+       One complete realistic Ganesha.
+    ========================================== */
 
-    // 14–16 Crown stage
+    /* -----------------------------------------
+       14–16
+       Ganesha begins appearing
+    ----------------------------------------- */
+
     setTimeout(() => {
-        ganesha.style.clipPath =
-            "inset(0 0 55% 0)";
-        ganesha.classList.add("ganesha-in");
+        ganeshaStage.classList.add("show-ganesha");
+        ganesha.classList.add("show-ganesha");
     }, 14000);
 
 
-    // 16–18 Eyes
+    /* -----------------------------------------
+       16–18
+       Smooth brightness increase
+    ----------------------------------------- */
+
     setTimeout(() => {
-        ganesha.style.clipPath =
-            "inset(0 0 45% 0)";
+        ganesha.style.filter =
+            "brightness(1.03)";
     }, 16000);
 
 
-    // 18–20 Ears
+    /* -----------------------------------------
+       18–20
+       Continue reveal
+    ----------------------------------------- */
+
     setTimeout(() => {
-        ganesha.style.clipPath =
-            "inset(0 0 35% 0)";
+        ganesha.style.filter =
+            "brightness(1.06)";
     }, 18000);
 
 
-    // 20–22 Trunk
+    /* -----------------------------------------
+       20–22
+       Continue
+    ----------------------------------------- */
+
     setTimeout(() => {
-        ganesha.style.clipPath =
-            "inset(0 0 25% 0)";
+        ganesha.style.filter =
+            "brightness(1.08)";
     }, 20000);
 
 
-    // 22–24 Face
+    /* -----------------------------------------
+       22–24
+       Continue
+    ----------------------------------------- */
+
     setTimeout(() => {
-        ganesha.style.clipPath =
-            "inset(0 0 15% 0)";
+        ganesha.style.filter =
+            "brightness(1.10)";
     }, 22000);
 
 
-    // 24–26 Hands
+    /* -----------------------------------------
+       24–26
+       Divine glow starts
+    ----------------------------------------- */
+
     setTimeout(() => {
-        ganesha.style.clipPath =
-            "inset(0)";
+        ganesha.style.filter =
+            "brightness(1.12) drop-shadow(0 0 20px rgba(255, 190, 60, 0.35))";
     }, 24000);
 
 
-    // 26–28 Ornaments
+    /* -----------------------------------------
+       26–28
+       Stronger glow
+    ----------------------------------------- */
+
     setTimeout(() => {
         ganesha.style.filter =
-            "brightness(1.08) drop-shadow(0 0 30px rgba(255,190,60,0.45))";
+            "brightness(1.15) drop-shadow(0 0 30px rgba(255, 190, 60, 0.45))";
     }, 26000);
 
 
-    // 28–30 Complete Ganesha
+    /* -----------------------------------------
+       28–30
+       Complete Ganesha
+    ----------------------------------------- */
+
     setTimeout(() => {
-        ganesha.style.clipPath = "inset(0)";
         ganesha.style.filter =
-            "brightness(1.12) drop-shadow(0 0 45px rgba(255,190,60,0.55))";
+            "brightness(1.18) drop-shadow(0 0 45px rgba(255, 200, 80, 0.55))";
     }, 28000);
 
 
-    // 30–32 Diyas
+    /* =========================================
+       30–32
+       Divine glow + subtle zoom
+    ========================================== */
+
     setTimeout(() => {
-        reveal(diyaLeft, "diya-in");
-        reveal(diyaRight, "diya-in");
+
+        ganesha.style.transition =
+            "transform 2s ease, filter 2s ease";
+
+        ganesha.style.transform =
+            "translate(-50%, -50%) scale(0.98)";
+
+        ganesha.style.filter =
+            "brightness(1.2) drop-shadow(0 0 60px rgba(255, 200, 80, 0.65))";
+
     }, 30000);
 
 
-    // 32–34 Final Darshan
+    /* =========================================
+       32–34
+       Final darshan + diyas
+    ========================================== */
+
     setTimeout(() => {
-        ganesha.style.filter =
-            "brightness(1.2) drop-shadow(0 0 65px rgba(255,200,80,0.7))";
+
+        show(diyaLeft, "show-diya");
+        show(diyaRight, "show-diya");
+
+        ganesha.style.transform =
+            "translate(-50%, -50%) scale(0.95)";
+
     }, 32000);
 
 
-    // 34–36 Wishes
+    /* =========================================
+       34–36
+       Wishes
+    ========================================== */
+
     setTimeout(() => {
-        wish.classList.add("wish-in");
+        show(wish, "show-wish");
     }, 34000);
 
 
-    // 36+ Blessing
+    /* =========================================
+       36+
+       Final blessing
+    ========================================== */
+
     setTimeout(() => {
-        blessing.classList.add("blessing-in");
+        show(blessing, "show-blessing");
     }, 36000);
 }
 
 
-// Start automatically
+/* =========================================
+   START AUTOMATICALLY
+========================================= */
+
 window.addEventListener("load", () => {
     startSequence();
 });
