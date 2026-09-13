@@ -24,94 +24,146 @@ body {
     background: #000;
 }
 
-/* Background */
+/* =========================================
+   BACKGROUND
+========================================= */
+
 .background {
     position: absolute;
     inset: 0;
     background: #000;
 }
 
-/* Common image settings */
+/* =========================================
+   COMMON IMAGE SETTINGS
+========================================= */
+
 #scene img {
     position: absolute;
+    display: block;
     pointer-events: none;
     user-select: none;
 }
 
-/* Divine Light */
+/* =========================================
+   DIVINE LIGHT
+========================================= */
+
 #divineLight {
     left: 50%;
     top: 50%;
-    width: min(24vw, 280px);
+
+    width: min(25vw, 300px);
+
     transform: translate(-50%, -50%) scale(0);
+
     opacity: 0;
 }
 
 #lightExpand {
     left: 50%;
     top: 50%;
-    width: min(70vw, 850px);
+
+    width: min(75vw, 900px);
+
     transform: translate(-50%, -50%) scale(0);
+
     opacity: 0;
 }
 
 #particles {
     left: 50%;
     top: 50%;
+
     width: 100vw;
     height: 100vh;
+
     object-fit: cover;
+
     transform: translate(-50%, -50%);
+
     opacity: 0;
 }
 
-/* Lotus */
+/* =========================================
+   LOTUS STAGE
+========================================= */
+
 #lotusStage {
     position: absolute;
+
     left: 50%;
-    top: 57%;
-    width: min(42vw, 550px);
-    height: min(42vw, 550px);
+    top: 58%;
+
+    width: min(45vw, 560px);
+    height: min(45vw, 560px);
+
     transform: translate(-50%, -50%);
+
+    z-index: 5;
 }
 
 #lotusStage img {
     left: 50%;
     top: 50%;
+
     width: 100%;
     height: 100%;
+
     object-fit: contain;
+
     transform: translate(-50%, -50%) scale(0);
+
     opacity: 0;
 }
 
-/* Ganesha */
+/* =========================================
+   GANESHA
+========================================= */
+
 #ganeshaStage {
     position: absolute;
+
     left: 50%;
-    top: 53%;
-    width: min(55vw, 720px);
-    height: min(78vh, 820px);
+    top: 52%;
+
+    width: min(58vw, 760px);
+    height: min(82vh, 850px);
+
     transform: translate(-50%, -50%);
+
+    z-index: 10;
+
+    opacity: 0;
 }
 
 #ganesha {
     left: 50%;
-    bottom: 0;
+    top: 50%;
+
     width: 100%;
     height: 100%;
+
     object-fit: contain;
-    object-position: center bottom;
-    transform: translateX(-50%) scale(0.92);
+
+    transform: translate(-50%, -50%) scale(0.92);
+
     opacity: 0;
 }
 
-/* Diyas */
+/* =========================================
+   DIYAS
+========================================= */
+
 #diyaLeft,
 #diyaRight {
-    width: min(12vw, 150px);
-    bottom: 7%;
+    width: min(13vw, 160px);
+
+    bottom: 6%;
+
     opacity: 0;
+
+    z-index: 15;
 }
 
 #diyaLeft {
@@ -122,109 +174,163 @@ body {
     right: 7%;
 }
 
-/* Wishes */
+/* =========================================
+   FINAL WISH
+========================================= */
+
 #wish {
     position: absolute;
+
     left: 50%;
-    bottom: 7%;
+    bottom: 6%;
+
     width: min(90vw, 900px);
-    transform: translateX(-50%) translateY(30px);
+
+    transform:
+        translateX(-50%)
+        translateY(25px);
+
     text-align: center;
+
     opacity: 0;
+
     z-index: 20;
+
     text-shadow:
-        0 0 8px rgba(255, 200, 80, 0.8),
-        0 0 25px rgba(255, 170, 30, 0.5);
+        0 0 10px rgba(255, 210, 100, 0.8),
+        0 0 25px rgba(255, 180, 40, 0.5);
 }
 
 #wish h1 {
+    color: #ffd76b;
+
     font-size: clamp(28px, 4vw, 52px);
+
+    font-weight: normal;
+
     margin-bottom: 8px;
-    color: #ffd66b;
 }
 
 #wish h2 {
+    color: #ffe9ad;
+
     font-size: clamp(20px, 2.5vw, 34px);
+
+    font-weight: normal;
+
     margin-bottom: 12px;
-    color: #ffe7a3;
 }
 
 #wish p {
     max-width: 760px;
-    margin: auto;
-    color: #fff1c9;
+
+    margin: 0 auto;
+
+    color: #fff2cf;
+
     font-size: clamp(14px, 1.5vw, 20px);
+
     line-height: 1.5;
 }
 
-/* Blessing */
+/* =========================================
+   FINAL BLESSING
+========================================= */
+
 #blessing {
     position: absolute;
+
     inset: 0;
+
     z-index: 30;
 
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
+
     align-items: center;
 
     text-align: center;
 
-    background: rgba(0, 0, 0, 0.55);
+    background: rgba(0, 0, 0, 0.58);
 
     opacity: 0;
+
     pointer-events: none;
 
     text-shadow:
         0 0 10px rgba(255, 210, 100, 0.8),
-        0 0 30px rgba(255, 180, 40, 0.45);
+        0 0 30px rgba(255, 180, 40, 0.5);
 }
 
 #blessing div {
-    color: #ffe29a;
+    color: #ffe3a0;
+
     font-size: clamp(22px, 3vw, 40px);
+
     margin-bottom: 18px;
 }
 
 #blessing strong {
     color: #fff0bd;
+
     font-size: clamp(30px, 5vw, 65px);
+
     font-weight: normal;
+
     margin-bottom: 12px;
 }
 
 #blessing span {
     color: #ffe9b0;
+
     font-size: clamp(18px, 2.2vw, 30px);
 }
 
-/* Animation classes */
-.show {
-    opacity: 1 !important;
+/* =========================================
+   SMOOTH APPEAR ANIMATIONS
+========================================= */
+
+.show-light {
+    animation: divineLightIn 2s ease forwards;
 }
 
-.scale-in {
-    animation: scaleIn 2s ease forwards;
+.show-expand {
+    animation: lightExpandIn 2s ease forwards;
 }
 
-.ganesha-in {
+.show-particles {
+    animation: particlesIn 2s ease forwards;
+}
+
+.show-lotus {
+    animation: lotusIn 1.8s ease forwards;
+}
+
+.show-ganesha {
     animation: ganeshaIn 2s ease forwards;
 }
 
-.diya-in {
-    animation: diyaIn 1.8s ease forwards;
+.show-diya {
+    animation: diyaIn 1.5s ease forwards;
 }
 
-.wish-in {
-    animation: wishIn 2s ease forwards;
+.show-wish {
+    animation: wishIn 1.8s ease forwards;
 }
 
-.blessing-in {
+.show-blessing {
     animation: blessingIn 2s ease forwards;
 }
 
-/* Animations */
-@keyframes scaleIn {
+/* =========================================
+   LIGHT ANIMATION
+========================================= */
+
+@keyframes divineLightIn {
+
     0% {
         opacity: 0;
         transform: translate(-50%, -50%) scale(0);
@@ -232,7 +338,7 @@ body {
 
     60% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1.08);
+        transform: translate(-50%, -50%) scale(1.1);
     }
 
     100% {
@@ -241,59 +347,149 @@ body {
     }
 }
 
-@keyframes ganeshaIn {
+@keyframes lightExpandIn {
+
     0% {
         opacity: 0;
-        transform: translateX(-50%) scale(0.82);
-        filter: brightness(0.4);
+        transform: translate(-50%, -50%) scale(0.2);
+    }
+
+    100% {
+        opacity: 0.75;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes particlesIn {
+
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.8;
+    }
+}
+
+/* =========================================
+   LOTUS ANIMATION
+========================================= */
+
+@keyframes lotusIn {
+
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.65);
     }
 
     60% {
         opacity: 1;
-        transform: translateX(-50%) scale(1.02);
-        filter: brightness(1.15);
+        transform: translate(-50%, -50%) scale(1.05);
     }
 
     100% {
         opacity: 1;
-        transform: translateX(-50%) scale(0.92);
-        filter: brightness(1);
+        transform: translate(-50%, -50%) scale(1);
     }
 }
 
-@keyframes diyaIn {
+/* =========================================
+   GANESHA ANIMATION
+========================================= */
+
+@keyframes ganeshaIn {
+
     0% {
         opacity: 0;
-        transform: scale(0.5);
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.84);
+
         filter: brightness(0.5);
     }
 
     60% {
         opacity: 1;
-        transform: scale(1.08);
-        filter: brightness(1.5);
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.97);
+
+        filter: brightness(1.08);
     }
 
     100% {
         opacity: 1;
-        transform: scale(1);
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.92);
+
         filter: brightness(1);
     }
 }
 
-@keyframes wishIn {
+/* =========================================
+   DIYA ANIMATION
+========================================= */
+
+@keyframes diyaIn {
+
     0% {
         opacity: 0;
-        transform: translateX(-50%) translateY(30px);
+
+        transform: scale(0.65);
+
+        filter: brightness(0.5);
+    }
+
+    70% {
+        opacity: 1;
+
+        transform: scale(1.08);
+
+        filter: brightness(1.35);
     }
 
     100% {
         opacity: 1;
-        transform: translateX(-50%) translateY(0);
+
+        transform: scale(1);
+
+        filter: brightness(1);
     }
 }
+
+/* =========================================
+   WISH ANIMATION
+========================================= */
+
+@keyframes wishIn {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateX(-50%)
+            translateY(25px);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+}
+
+/* =========================================
+   BLESSING ANIMATION
+========================================= */
 
 @keyframes blessingIn {
+
     0% {
         opacity: 0;
     }
@@ -303,24 +499,30 @@ body {
     }
 }
 
-/* Mobile */
+/* =========================================
+   MOBILE
+========================================= */
+
 @media (max-width: 600px) {
 
     #lotusStage {
-        top: 58%;
-        width: 75vw;
-        height: 75vw;
+        width: 78vw;
+        height: 78vw;
+
+        top: 59%;
     }
 
     #ganeshaStage {
-        width: 88vw;
-        height: 75vh;
+        width: 92vw;
+        height: 76vh;
+
+        top: 52%;
     }
 
     #diyaLeft,
     #diyaRight {
         width: 22vw;
-        bottom: 5%;
+        bottom: 4%;
     }
 
     #diyaLeft {
@@ -332,6 +534,6 @@ body {
     }
 
     #wish {
-        bottom: 5%;
+        bottom: 4%;
     }
 }
