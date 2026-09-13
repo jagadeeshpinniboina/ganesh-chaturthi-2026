@@ -20,87 +20,255 @@ body {
 }
 
 #experience {
-    position: relative;
     width: 100%;
     height: 100vh;
+    overflow: hidden;
+    background: #000;
+}
+
+#scene {
+    position: absolute;
+    inset: 0;
+
     overflow: hidden;
 
     background:
         radial-gradient(
-            circle at center,
-            #291207 0%,
-            #0b0301 48%,
+            circle at 50% 45%,
+            #321607 0%,
+            #100501 42%,
             #000000 100%
         );
 }
 
-#ganeshCanvas {
+/* -----------------------------------
+   DIVINE LIGHT
+----------------------------------- */
+
+#divineLight {
+    position: absolute;
+
+    left: 50%;
+    top: 45%;
+
+    width: 10px;
+    height: 10px;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.2);
+
+    border-radius: 50%;
+
+    background: #fff1b0;
+
+    box-shadow:
+        0 0 12px #ffd36a,
+        0 0 35px #ffb52f,
+        0 0 80px #ff8c20,
+        0 0 150px rgba(255, 170, 60, 0.6);
+
+    opacity: 0;
+
+    transition:
+        transform 2s ease,
+        opacity 2s ease;
+}
+
+/* -----------------------------------
+   ENERGY RING
+----------------------------------- */
+
+#energyRing {
+    position: absolute;
+
+    left: 50%;
+    top: 72%;
+
+    width: 25px;
+    height: 25px;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.1);
+
+    border: 2px solid
+        rgba(255, 196, 86, 0.9);
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 15px #ffb52f,
+        0 0 40px rgba(255, 170, 50, 0.7);
+
+    opacity: 0;
+
+    transition:
+        transform 2s ease,
+        opacity 2s ease;
+}
+
+/* -----------------------------------
+   PARTICLES
+----------------------------------- */
+
+#particles {
     position: absolute;
     inset: 0;
 
-    width: 100%;
-    height: 100%;
+    opacity: 0;
 
-    display: block;
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255, 210, 105, 0.95) 1px,
+            transparent 2px
+        );
+
+    background-size:
+        73px 67px;
+
+    animation:
+        particleFloat 8s linear infinite;
 }
 
-#cinematicGlow {
+@keyframes particleFloat {
+
+    from {
+        background-position:
+            0 0;
+    }
+
+    to {
+        background-position:
+            130px -180px;
+    }
+}
+
+/* -----------------------------------
+   GANESHA
+----------------------------------- */
+
+#ganeshaReveal {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: min(900px, 100vw);
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+
+    opacity: 0;
+
+    transition:
+        opacity 1.5s ease,
+        transform 2s ease;
+
+    filter:
+        drop-shadow(
+            0 0 25px
+            rgba(255, 178, 61, 0.4)
+        );
+}
+
+#ganeshaImage {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    user-select: none;
+    pointer-events: none;
+}
+
+/* -----------------------------------
+   AURA
+----------------------------------- */
+
+#aura {
     position: absolute;
     inset: 0;
 
     pointer-events: none;
 
+    opacity: 0;
+
     background:
         radial-gradient(
-            circle at 50% 45%,
-            rgba(255, 190, 80, 0.22),
-            transparent 25%
+            ellipse at center,
+            rgba(255, 184, 62, 0.20),
+            transparent 45%
         );
-
-    opacity: 0;
 
     mix-blend-mode: screen;
 
     transition:
-        opacity 1.5s ease;
+        opacity 2s ease;
 }
 
-#sceneTime {
+/* -----------------------------------
+   STAGE TEXT
+----------------------------------- */
+
+#stageText {
     position: absolute;
 
-    top: 18px;
-    right: 22px;
+    left: 50%;
+    bottom: 6%;
+
+    transform:
+        translateX(-50%);
 
     color:
-        rgba(255, 215, 130, 0.45);
+        rgba(255, 219, 145, 0.85);
 
-    font-size: 11px;
+    font-size:
+        clamp(13px, 1.5vw, 18px);
 
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+
+    text-align: center;
 
     opacity: 0;
 
     pointer-events: none;
+
+    text-shadow:
+        0 0 15px
+        rgba(255, 180, 60, 0.8);
+
+    transition:
+        opacity 0.8s ease;
 }
+
+/* -----------------------------------
+   FINAL MESSAGE
+----------------------------------- */
 
 #finalMessage {
     position: absolute;
     inset: 0;
 
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     text-align: center;
 
     background:
         radial-gradient(
             circle at center,
-            rgba(70, 28, 5, 0.38),
-            rgba(0, 0, 0, 0.90)
+            rgba(67, 27, 5, 0.55),
+            rgba(0, 0, 0, 0.94)
         );
 
     opacity: 0;
+
     visibility: hidden;
 
     pointer-events: none;
@@ -115,13 +283,13 @@ body {
     visibility: visible;
 }
 
-.message-inner {
+.messageContent {
     width: min(900px, 92%);
 
     padding: 30px;
 }
 
-.om {
+.sanskrit {
     color: #ffd477;
 
     font-size:
@@ -132,7 +300,7 @@ body {
     margin-bottom: 20px;
 }
 
-.message-inner h1 {
+.messageContent h1 {
     color: #ffd77d;
 
     font-size:
@@ -145,7 +313,7 @@ body {
         rgba(255, 190, 80, 0.55);
 }
 
-.message-inner h2 {
+.messageContent h2 {
     margin-top: 14px;
 
     color: #f5c078;
@@ -156,13 +324,13 @@ body {
     font-weight: 400;
 }
 
-.message-inner p {
+.messageContent p {
     max-width: 700px;
 
     margin: 28px auto 0;
 
     color:
-        rgba(255, 239, 204, 0.90);
+        rgba(255, 239, 204, 0.92);
 
     font-size:
         clamp(16px, 2vw, 22px);
@@ -170,7 +338,7 @@ body {
     line-height: 1.7;
 }
 
-.blessing {
+.flowerLine {
     margin-top: 35px;
 
     color: #ffd071;
@@ -184,33 +352,36 @@ body {
     margin-top: 18px;
 
     color:
-        rgba(255, 215, 145, 0.70);
+        rgba(255, 215, 145, 0.72);
 
     font-size: 16px;
 
     letter-spacing: 3px;
 }
 
+/* -----------------------------------
+   MOBILE
+----------------------------------- */
+
 @media (max-width: 600px) {
 
-    #sceneTime {
-        top: 12px;
-        right: 12px;
+    #ganeshaReveal {
+        width: 125vw;
     }
 
-    .message-inner {
+    #stageText {
+        bottom: 5%;
+
+        font-size: 11px;
+
+        letter-spacing: 2px;
+    }
+
+    .messageContent {
         padding: 20px;
     }
 
-    .message-inner p {
+    .messageContent p {
         line-height: 1.55;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-    * {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
     }
 }
