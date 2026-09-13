@@ -1,6 +1,6 @@
 /* =========================================================
    GANESH CHATURTHI 2026
-   CINEMATIC BLACK & GOLD EXPERIENCE
+   CINEMATIC BLACK BACKGROUND
 ========================================================= */
 
 * {
@@ -14,220 +14,138 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    background: #000;
 }
 
 body {
-    background: #000;
     font-family: Georgia, "Times New Roman", serif;
     color: #fff;
 }
 
-
-/* =========================================================
-   MAIN EXPERIENCE
-========================================================= */
-
 #experience {
     position: relative;
-
     width: 100vw;
     height: 100vh;
-
     overflow: hidden;
-
     background: #000;
 }
 
 
 /* =========================================================
-   BLACK BACKGROUND
+   PURE BLACK BACKGROUND
 ========================================================= */
 
-.black-background {
+.background {
     position: absolute;
-
     inset: 0;
-
-    background:
-        radial-gradient(
-            circle at 50% 52%,
-            rgba(255, 166, 40, 0.08),
-            transparent 35%
-        ),
-        #000;
-
+    background: #000;
     z-index: 0;
 }
 
 
 /* =========================================================
-   GOLDEN PARTICLES
+   DIVINE LIGHT
 ========================================================= */
 
-#goldenParticles {
+#divineLight,
+#lightExpand {
     position: absolute;
-
-    inset: -20%;
-
-    z-index: 2;
-
-    pointer-events: none;
-
-    opacity: 0;
-
-    background-image:
-        radial-gradient(
-            circle,
-            rgba(255, 207, 93, 0.95) 0 1px,
-            transparent 2px
-        ),
-        radial-gradient(
-            circle,
-            rgba(255, 180, 50, 0.7) 0 1px,
-            transparent 2px
-        );
-
-    background-size:
-        90px 90px,
-        145px 145px;
-
-    animation:
-        particleFloat 10s linear infinite;
-}
-
-
-@keyframes particleFloat {
-
-    0% {
-        transform:
-            translateY(20px)
-            rotate(0deg);
-    }
-
-    50% {
-        transform:
-            translateY(-20px)
-            rotate(4deg);
-    }
-
-    100% {
-        transform:
-            translateY(20px)
-            rotate(0deg);
-    }
-}
-
-
-/* =========================================================
-   DIVINE GLOW
-========================================================= */
-
-#divineGlow {
-    position: absolute;
-
-    left: 50%;
-    top: 48%;
-
-    width: 35vw;
-    height: 35vw;
-
-    transform:
-        translate(-50%, -50%)
-        scale(0.2);
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255, 194, 69, 0.5),
-            rgba(255, 145, 20, 0.15) 35%,
-            transparent 70%
-        );
-
-    filter: blur(10px);
-
-    opacity: 0;
-
-    z-index: 3;
-
-    pointer-events: none;
-}
-
-
-/* =========================================================
-   LIGHT STAGE
-========================================================= */
-
-#lightStage {
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 5;
-
-    pointer-events: none;
-}
-
-
-#lightStage img {
-    position: absolute;
-
     left: 50%;
     top: 50%;
 
-    width: min(55vw, 650px);
-    height: min(55vw, 650px);
+    width: min(65vw, 750px);
+    height: min(65vw, 750px);
 
     object-fit: contain;
 
-    transform:
-        translate(-50%, -50%)
-        scale(0.2);
+    transform: translate(-50%, -50%) scale(0.2);
 
     opacity: 0;
-}
 
+    pointer-events: none;
+}
 
 #divineLight {
     z-index: 3;
 }
-
 
 #lightExpand {
     z-index: 2;
 }
 
 
-#particleImage {
-    z-index: 1;
+/* =========================================================
+   PARTICLES
+========================================================= */
 
-    width: min(90vw, 1100px) !important;
-    height: min(80vh, 800px) !important;
+#particles {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: min(95vw, 1200px);
+    height: min(85vh, 850px);
+
+    object-fit: contain;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.7);
+
+    opacity: 0;
+
+    z-index: 4;
+
+    pointer-events: none;
+
+    animation: particlesFloat 8s ease-in-out infinite;
+}
+
+@keyframes particlesFloat {
+
+    0% {
+        transform:
+            translate(-50%, -50%)
+            scale(0.98)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translate(-50%, -51%)
+            scale(1.03)
+            rotate(1deg);
+    }
+
+    100% {
+        transform:
+            translate(-50%, -50%)
+            scale(0.98)
+            rotate(0deg);
+    }
 }
 
 
 /* =========================================================
-   LOTUS STAGE
+   LOTUS
 ========================================================= */
 
 #lotusStage {
     position: absolute;
 
     left: 50%;
-    top: 59%;
+    top: 65%;
 
-    width: min(75vw, 950px);
-    height: min(45vh, 480px);
+    width: min(82vw, 1000px);
+    height: min(45vh, 470px);
 
-    transform:
-        translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 
     z-index: 10;
 
     pointer-events: none;
 }
-
 
 .lotusImage {
     position: absolute;
@@ -242,14 +160,14 @@ body {
 
     transform:
         translate(-50%, -50%)
-        scale(0.3);
+        scale(0.65);
 
     opacity: 0;
 
     filter:
         drop-shadow(
-            0 0 25px
-            rgba(255, 160, 40, 0.45)
+            0 0 22px
+            rgba(255, 170, 45, 0.55)
         );
 }
 
@@ -262,16 +180,16 @@ body {
     position: absolute;
 
     left: 50%;
-    top: 67%;
+    top: 70%;
 
-    width: min(62vw, 780px);
-    height: min(30vh, 300px);
+    width: min(68vw, 820px);
+    height: min(32vh, 330px);
 
     object-fit: contain;
 
     transform:
         translate(-50%, -50%)
-        scaleY(0.05);
+        scale(0.6);
 
     opacity: 0;
 
@@ -280,34 +198,39 @@ body {
     filter:
         drop-shadow(
             0 0 20px
-            rgba(255, 180, 40, 0.55)
+            rgba(255, 183, 55, 0.65)
         );
 }
 
 
 /* =========================================================
-   GANESHA STAGE
+   GANESHA MAIN REVEAL
 ========================================================= */
 
-#ganeshaStage {
+#ganeshaReveal {
     position: absolute;
 
     left: 50%;
-    top: 51%;
+    top: 49%;
 
-    width: min(78vw, 1050px);
-    height: min(82vh, 850px);
+    width: min(76vw, 1000px);
+    height: min(86vh, 900px);
 
-    transform:
-        translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 
-    z-index: 20;
+    z-index: 25;
 
     pointer-events: none;
+
+    opacity: 1;
 }
 
 
-.ganeshaPart {
+/* =========================================================
+   BASE IMAGE
+========================================================= */
+
+#ganeshaBase {
     position: absolute;
 
     left: 50%;
@@ -319,16 +242,212 @@ body {
     object-fit: contain;
 
     transform:
-        translate(-50%, -50%)
-        scale(1.08);
+        translate(-50%, -50%);
 
     opacity: 0;
 
     filter:
         drop-shadow(
-            0 0 18px
-            rgba(255, 176, 48, 0.22)
+            0 0 25px
+            rgba(255, 183, 55, 0.35)
         );
+}
+
+
+/* =========================================================
+   REVEAL LAYERS
+
+   Every layer uses THE SAME COMPLETE IMAGE.
+   This keeps every part perfectly aligned.
+========================================================= */
+
+.reveal {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.reveal img {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    transform:
+        translate(-50%, -50%);
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(255, 190, 70, 0.25)
+        );
+}
+
+
+/* =========================================================
+   CROWN
+========================================================= */
+
+.reveal.crown {
+    clip-path: polygon(
+        25% 0%,
+        75% 0%,
+        82% 27%,
+        18% 27%
+    );
+}
+
+
+/* =========================================================
+   EYES
+========================================================= */
+
+.reveal.eyes {
+    clip-path: polygon(
+        28% 22%,
+        72% 22%,
+        75% 43%,
+        25% 43%
+    );
+}
+
+
+/* =========================================================
+   EARS
+========================================================= */
+
+.reveal.ears {
+    clip-path: polygon(
+        5% 25%,
+        95% 25%,
+        95% 57%,
+        5% 57%
+    );
+}
+
+
+/* =========================================================
+   TRUNK
+========================================================= */
+
+.reveal.trunk {
+    clip-path: polygon(
+        38% 30%,
+        62% 30%,
+        70% 70%,
+        48% 67%,
+        30% 55%
+    );
+}
+
+
+/* =========================================================
+   FACE
+========================================================= */
+
+.reveal.face {
+    clip-path: polygon(
+        25% 22%,
+        75% 22%,
+        82% 58%,
+        68% 65%,
+        32% 65%,
+        18% 58%
+    );
+}
+
+
+/* =========================================================
+   LEFT HAND
+========================================================= */
+
+.reveal.left-hand {
+    clip-path: polygon(
+        5% 35%,
+        35% 35%,
+        38% 75%,
+        5% 75%
+    );
+}
+
+
+/* =========================================================
+   RIGHT HAND
+========================================================= */
+
+.reveal.right-hand {
+    clip-path: polygon(
+        65% 35%,
+        95% 35%,
+        95% 75%,
+        62% 75%
+    );
+}
+
+
+/* =========================================================
+   ORNAMENTS
+========================================================= */
+
+.reveal.ornaments {
+    clip-path: polygon(
+        25% 52%,
+        75% 52%,
+        82% 85%,
+        18% 85%
+    );
+}
+
+
+/* =========================================================
+   DIVINE GLOW
+========================================================= */
+
+#ganeshaReveal::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 55%;
+    height: 55%;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.8);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 192, 64, 0.32),
+            rgba(255, 150, 20, 0.12) 35%,
+            transparent 70%
+        );
+
+    filter: blur(20px);
+
+    opacity: 0;
+
+    z-index: -1;
 }
 
 
@@ -339,68 +458,30 @@ body {
 .diya {
     position: absolute;
 
-    bottom: 8%;
+    bottom: 7%;
 
-    width: min(14vw, 190px);
+    width: min(15vw, 190px);
     height: min(25vh, 260px);
 
     object-fit: contain;
 
     opacity: 0;
 
-    z-index: 35;
+    z-index: 40;
 
     filter:
         drop-shadow(
-            0 0 18px
-            rgba(255, 166, 40, 0.65)
+            0 0 20px
+            rgba(255, 173, 45, 0.75)
         );
 }
 
-
 #leftDiya {
-    left: 7%;
+    left: 5%;
 }
-
 
 #rightDiya {
-    right: 7%;
-}
-
-
-/* =========================================================
-   STAGE TEXT
-========================================================= */
-
-#stageText {
-    position: absolute;
-
-    left: 50%;
-    bottom: 7%;
-
-    transform:
-        translateX(-50%);
-
-    z-index: 50;
-
-    font-size: clamp(
-        14px,
-        1.7vw,
-        24px
-    );
-
-    letter-spacing: 2px;
-
-    color: #ffd77a;
-
-    text-shadow:
-        0 0 10px rgba(255, 184, 55, 0.8);
-
-    opacity: 0;
-
-    white-space: nowrap;
-
-    pointer-events: none;
+    right: 5%;
 }
 
 
@@ -408,90 +489,77 @@ body {
    FINAL WISH
 ========================================================= */
 
-#finalWish {
+#wish {
     position: absolute;
 
-    right: 7%;
+    left: 50%;
     top: 50%;
 
-    width: min(40vw, 540px);
+    width: min(90vw, 850px);
 
     transform:
-        translateY(-50%)
-        translateX(40px);
+        translate(-50%, -50%)
+        scale(0.95);
 
     text-align: center;
 
-    z-index: 60;
-
     opacity: 0;
+
+    z-index: 70;
 
     pointer-events: none;
 }
 
+#wish .om {
+    font-size: clamp(30px, 4vw, 55px);
 
-#finalWish .wishOm {
-    font-size: 34px;
+    color: #ffd56d;
 
-    color: #ffd36b;
-
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 
     text-shadow:
-        0 0 18px #ffb62e;
+        0 0 20px
+        rgba(255, 180, 45, 0.9);
 }
 
-
-#finalWish h1 {
-    font-size: clamp(
-        28px,
-        4vw,
-        58px
-    );
+#wish h1 {
+    font-size: clamp(32px, 5vw, 70px);
 
     font-weight: 500;
 
-    color: #ffd36b;
+    color: #ffd56d;
 
     text-shadow:
-        0 0 15px rgba(255, 178, 45, 0.8);
+        0 0 20px
+        rgba(255, 180, 45, 0.8);
 }
 
-
-#finalWish h2 {
+#wish h2 {
     margin-top: 15px;
 
-    font-size: clamp(
-        20px,
-        2.2vw,
-        32px
-    );
+    font-size: clamp(20px, 2.5vw, 35px);
 
-    color: #ffcf6a;
+    color: #ffcf72;
 }
 
+#wish p {
+    max-width: 720px;
 
-#finalWish p {
-    margin-top: 22px;
+    margin: 25px auto 0;
 
-    font-size: clamp(
-        15px,
-        1.4vw,
-        21px
-    );
+    font-size: clamp(16px, 1.5vw, 23px);
 
     line-height: 1.7;
 
-    color: #eee;
+    color: #f1e5c8;
 }
-
 
 .wishLine {
     margin-top: 25px;
 
-    color: #ffd36b;
+    color: #ffd56d;
 
-    font-size: 22px;
+    font-size: 25px;
 }
 
 
@@ -499,7 +567,7 @@ body {
    FINAL BLESSING
 ========================================================= */
 
-#finalBlessing {
+#blessing {
     position: absolute;
 
     inset: 0;
@@ -513,65 +581,45 @@ body {
 
     text-align: center;
 
-    z-index: 100;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255, 180, 45, 0.07),
-            transparent 45%
-        );
+    background: #000;
 
     opacity: 0;
+
+    z-index: 100;
 
     pointer-events: none;
 }
 
+#blessing > div {
+    font-size: clamp(20px, 2vw, 32px);
 
-#finalBlessing > div {
-    font-size: clamp(
-        20px,
-        2vw,
-        32px
-    );
-
-    color: #ffd36b;
+    color: #ffd56d;
 
     margin-bottom: 25px;
 
     text-shadow:
-        0 0 15px
-        rgba(255, 184, 50, 0.8);
+        0 0 18px
+        rgba(255, 180, 45, 0.8);
 }
 
-
-#finalBlessing h1 {
-    font-size: clamp(
-        35px,
-        6vw,
-        80px
-    );
+#blessing h1 {
+    font-size: clamp(38px, 6vw, 82px);
 
     font-weight: 500;
 
-    color: #ffd36b;
+    color: #ffd56d;
 
     text-shadow:
         0 0 25px
-        rgba(255, 184, 50, 0.7);
+        rgba(255, 180, 45, 0.8);
 }
 
-
-#finalBlessing p {
+#blessing p {
     margin-top: 20px;
 
-    font-size: clamp(
-        18px,
-        2vw,
-        30px
-    );
+    font-size: clamp(18px, 2vw, 30px);
 
-    color: #f4e2b5;
+    color: #e9d8ae;
 }
 
 
@@ -582,91 +630,49 @@ body {
 @media (max-width: 700px) {
 
     #lotusStage {
-        top: 62%;
-
-        width: 95vw;
-        height: 40vh;
+        width: 100vw;
+        height: 42vh;
+        top: 67%;
     }
-
 
     #goldenSeat {
-        top: 70%;
-
-        width: 85vw;
+        width: 88vw;
+        top: 71%;
     }
 
-
-    #ganeshaStage {
-        width: 100vw;
-        height: 72vh;
-
-        top: 50%;
+    #ganeshaReveal {
+        width: 105vw;
+        height: 78vh;
+        top: 49%;
     }
-
 
     .diya {
-        bottom: 5%;
-
-        width: 23vw;
+        width: 24vw;
         height: 20vh;
+        bottom: 4%;
     }
-
 
     #leftDiya {
-        left: 1%;
+        left: 0;
     }
-
 
     #rightDiya {
-        right: 1%;
+        right: 0;
     }
 
-
-    #stageText {
-        bottom: 2%;
-
-        font-size: 13px;
+    #wish {
+        width: 94vw;
     }
 
-
-    #finalWish {
-        right: 50%;
-        top: 50%;
-
-        width: 90vw;
-
-        transform:
-            translate(
-                50%,
-                -50%
-            );
-    }
-
-
-    #finalWish h1 {
+    #wish h1 {
         font-size: 31px;
     }
 
-
-    #finalWish h2 {
+    #wish h2 {
         font-size: 20px;
     }
 
-
-    #finalWish p {
+    #wish p {
         font-size: 15px;
-    }
-}
-
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    * {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
     }
 }
